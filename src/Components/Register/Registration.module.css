@@ -1,0 +1,217 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .stylePage {
+      /* display: flex; */
+      margin-top: 10%;
+      height: 90vh;
+    }
+  
+    .image {
+      margin-top: 35%;
+      margin-left: 0%;
+      width: 0%;
+      height: 0%;
+    }
+  
+    .right {
+      margin-top: 1%;
+      margin-right: 20%;
+      min-width: 50vh;
+    }
+  
+    .paperStyle {
+      display: flex;
+      width: 50vh;
+      height: 75vh;
+      margin: 2% 7% 7%;
+      opacity: 0.8;
+      position: absolute;
+    }
+  
+    .textSyle {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      width: 80%;
+      position: absolute;
+    }
+  
+    .Button {
+      width: 60%;
+      color: blueviolet;
+      background-color: blueviolet;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .stylePage {
+      /* display: flex; */
+      margin-top: 10%;
+      height: 90vh;
+    }
+  
+    .image {
+      margin-top: 35%;
+      margin-left: 0%;
+      width: 0%;
+      height: 0%;
+    }
+  
+    .right {
+      margin-top: 1%;
+      margin-right: 20%;
+      min-width: 50vh;
+    }
+  
+    .paperStyle {
+      display: flex;
+      width: 80vh;
+      height: 75vh;
+      margin: 2% 7% 7%;
+      opacity: 0.8;
+      position: absolute;
+    }
+  
+    .textSyle {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      width: 80%;
+      position: absolute;
+    }
+  
+    .Button {
+      width: 60%;
+      color: blueviolet;
+      background-color: blueviolet;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .stylePage {
+      /* display: flex; */
+      margin-top: 2%;
+      height: 90vh;
+    }
+  
+    .image {
+      margin-top: 40%;
+      margin-left: 10%;
+      width: 80%;
+      height: 40%;
+    }
+  
+    .right {
+      margin-top: 1%;
+      margin-left: 5%;
+      margin-right: 2%;
+      min-width: 50vh;
+    }
+  
+    .paperStyle {
+      display: flex;
+      width: 100vh;
+      height: 75vh;
+      margin: 5% 8% 8%;
+      opacity: 0.8;
+      position: absolute;
+    }
+  
+    .textSyle {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      width: 80%;
+      position: absolute;
+    }
+  
+    .Button {
+      width: 60%;
+      color: blueviolet;
+      background-color: blueviolet;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .stylePage {
+      /* display: flex; */
+      margin-top: 2%;
+      height: 90vh;
+    }
+  
+    .image {
+      margin-top: 23%;
+      margin-left: 1%;
+      width: 80%;
+      height: 50%;
+    }
+  
+    .right {
+      margin-top: 1%;
+      margin-left: 5%;
+      margin-right: 2%;
+      min-width: 50vh;
+    }
+  
+    .paperStyle {
+      display: flex;
+      width: 130vh;
+      height: 80vh;
+      margin: 2% 8% 8%;
+      opacity: 0.8;
+      position: absolute;
+    }
+  
+    .textSyle {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      width: 80%;
+      position: absolute;
+    }
+  
+    .Button {
+      width: 60%;
+      color: blueviolet;
+      background-color: blueviolet;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .stylePage {
+      /* display: flex; */
+      margin-top: 2%;
+      height: 90vh;
+    }
+  
+    .image {
+      margin-top: 15%;
+      margin-left: 1%;
+      width: 80%;
+      height: 60%;
+    }
+  
+    .right {
+      margin-top: 1%;
+      margin-left: 5%;
+      margin-right: 2%;
+    }
+  
+    .paperStyle {
+      display: flex;
+      width: 160vh;
+      height: 80vh;
+      margin: 2% 8% 8%;
+      opacity: 0.8;
+      position: absolute;
+    }
+  
+    .textSyle {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      width: 80%;
+      position: absolute;
+    }
+  
+    .Button {
+      width: 50%;
+      color: blueviolet;
+      background-color: blueviolet;
+    }
+  }
+  /* Changes in this file added button colour and background violet */

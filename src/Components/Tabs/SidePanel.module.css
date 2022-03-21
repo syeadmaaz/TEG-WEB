@@ -1,0 +1,70 @@
+/* 
+
+Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {...}
+
+Small devices (portrait tablets and large phones, 600px and up) 
+@media only screen and (min-width: 600px) {...}
+
+/* Medium devices (landscape tablets, 768px and up) 
+@media only screen and (min-width: 768px) {...}
+
+/* Large devices (laptops/desktops, 992px and up) 
+@media only screen and (min-width: 992px) {...}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) 
+@media only screen and (min-width: 1200px) {...} 
+*/
+
+#tablist {
+  text-align: center;
+  position: absolute;
+  padding: 1rem;
+  border-radius: 22px;
+}
+
+.page{
+  height: 620px;
+  margin: 10px;
+}
+
+
+.tabs{
+  margin: 5% 0% auto;
+}
+
+.sidebarContainer {
+  height: 99%;
+  width: 100%;  
+  justify-content: center;
+}
+
+
+
+.active {
+  background-color: #00bfff;
+  text-align: center;
+  font-weight: bold;
+  font-size: medium;
+  justify-content: space-between;
+  color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.deActive {
+  text-align: center;
+  font-size: medium;
+  justify-content: space-between;
+  cursor: pointer;
+  /* margin: 0px 20px; */
+  margin: 10px;
+  color: black;
+  background-color: #eceff1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}

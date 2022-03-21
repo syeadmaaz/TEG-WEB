@@ -1,0 +1,28 @@
+.sidebarContainer{
+    height: 100vh;
+    width: 100%;
+    /* background-color: rgba(128,128,128,0.22); */
+}
+
+.logoStyle{
+    width: 114px;
+    margin: 35px;
+}
+
+.active{
+    background-color: #00bfff;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+    padding: 4%;
+    cursor: pointer;
+    margin:0px 20px;
+}
+
+.deActive{
+    border-bottom: 1px dashed ;
+    text-align: center;
+    padding: 4%;   
+    cursor: pointer;
+    margin:0px 20px;
+}
