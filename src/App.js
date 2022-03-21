@@ -11,12 +11,14 @@ import OverView from './Components/PreRegistration/OverView';
 import SubType from './Components/Register/subType/SubType';
 import PreRegistration from './Components/PreRegistration/PreRegistration';
 import LegalInfoFree from './Components/PreRegistration/LegalInfoFree';
-import UploadTest from './Components/Register/Upload/UploadTest';
+// import UploadTest from './Components/Register/Upload/UploadTest';
+import UploadDoc1 from "./Components/Register/Upload/UploadDoc1";
 
 function App() {
   return (
     <div className="App">
-      <LoginPage/>  
+      {/* <LoginPage/>   */}
+      <UploadDoc1/>
       {/* <Tabs/> */}
       {/* <SidePanel/> */}
       {/* <Personal/> */}
