@@ -13,12 +13,14 @@ import PreRegistration from './Components/PreRegistration/PreRegistration';
 import LegalInfoFree from './Components/PreRegistration/LegalInfoFree';
 // import UploadTest from './Components/Register/Upload/UploadTest';
 import UploadDoc1 from "./Components/Register/Upload/UploadDoc1";
+import UploadDoc2 from "./Components/Register/Upload/UploadDoc2";
 
 function App() {
   return (
     <div className="App">
       {/* <LoginPage/>   */}
-      <UploadDoc1/>
+      <UploadDoc/>
+      {/* <UploadDoc2/> */}
       {/* <Tabs/> */}
       {/* <SidePanel/> */}
       {/* <Personal/> */}

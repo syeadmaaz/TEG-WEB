@@ -1,174 +1,239 @@
-import React, {ReactEventHandler, useEffect} from "react";
-import { Grid, Paper, Button, Input,} from "@mui/material";
+import React, { ReactEventHandler, useEffect } from "react";
+import { Grid, Paper, Button, Input } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import classes from "./UploadDoc.module.css";
 import axios from "../../../axios_tteg";
-
+import Checkbox from "@mui/material/Checkbox";
 
 const fileTypes = ["PDF"];
-const fileType = ["application/pdf"]
+const fileType = ["application/pdf"];
+
 export default function App() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    // const[file1, setFile1] = useState({
-    //     value: null,
-    //     isValid: false,
-    // })
+  const [docDetail, setDocDetail] = useState({
+    file1: {
+      documentTypeID: "DT-00001",
+      value: null,
+      isUploaded: false,
+    },
+    file2: {
+      documentTypeID: "DT-00002",
+      value: null,
+      isUploaded: false,
+    },
+    file3: {
+      documentTypeID: "DT-00003",
+      value: null,
+      isUploaded: false,
+    },
+    file4: {
+      documentTypeID: "DT-00004",
+      value: null,
+      isUploaded: false,
+    },
+    file5: {
+      documentTypeID: "DT-00005",
+      value: null,
+      isUploaded: false,
+    },
+    file6: {
+      documentTypeID: "DT-00006",
+      value: null,
+      isUploaded: false,
+    },
+    file7: {
+      documentTypeID: "DT-00007",
+      value: null,
+      isUploaded: false,
+    },
+    file8: {
+      documentTypeID: "DT-00008",
+      value: null,
+      isUploaded: false,
+    },
+    file9: {
+      documentTypeID: "DT-00009",
+      value: null,
+      isUploaded: false,
+    },
+    file10: {
+      documentTypeID: "DT-00010",
+      value: null,
+      isUploaded: false,
+    },
+    file11: {
+      documentTypeID: "DT-00011",
+      value: null,
+      isUploaded: false,
+    },
+    file12: {
+      documentTypeID: "DT-00012",
+      value: null,
+      isUploaded: false,
+    },
+  });
 
-  const [file1, setFile1] = useState(null);
-  const [file2, setFile2] = useState(null);
-  const [file3, setFile3] = useState(null);
-  const [file4, setFile4] = useState(null);
-  const [file5, setFile5] = useState(null);
-  const [file6, setFile6] = useState(null);
-  const [file7, setFile7] = useState(null);
-  const [file8, setFile8] = useState(null);
-  const [file9, setFile9] = useState(null);
-  const [file10, setFile10] = useState(null);
-  const [file11, setFile11] = useState(null);
-  const [file12, setFile12] = useState(null);
-
-
-
-const [isSelected, setIsSelected] = useState(false);
-
-const [pdf, setPdf] = useState(null);
-const [pdfError, setPdfError] = useState(null);
-
-
-// useEffect(() => {
-//     // Update the document title using the browser API
-//     console.log(pdf)
-// }, []);
-
-const updateDatabase = () => {
-    console.log(pdf.result);
-    axios.post('/uploadPdf',{
-      pdfFile:pdf
-    })
-    .then(response=>{
-      console.log(response);
-    })
-    .catch(e=>console.log(e))
-
-    // axios
-    //   .post("/handlePdf", {
-         
-    //       person_id: cookies.get("userData").person_id,
-    //       user_type: cookies.get("userData").user_type,
-    //       pdf: pdf.result,
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     setSuccessful(true);
-    //     setTimeout(() => {
-    //       setSuccessful(false);
-    //     }, 5000);
-    //   })
-    //   .catch((e) => console.log(e));
-  };
-
-
-
-  const handleChange1 = (file) => {
-    setFile1(file);
-    setIsSelected(true);
-
-    console.log(file)
-    let selectedFile = file;
-    if(selectedFile) {
-        console.log(selectedFile.type);
-        console.log(fileType.includes(selectedFile.type))
-        
-        if(selectedFile && fileType.includes(selectedFile.type)) {
-            console.log("FileType validated with Selected File")
-            const data = new FormData()
-            data.append('file', selectedFile)
-            console.log(data);
-            axios.post("/upload", data)
-            .then(response =>{
-              console.log(response);
-            })
-            .catch(e=>console.log(e));
-
-            // let reader = new FileReader();
-            // // console.log(reader)
-            // reader.readAsArrayBuffer(selectedFile);
-            // setPdf(reader);
-            // // reader.onload = (e) => {
-            // //     setpdfError(null);
-            // //     setPdf(e.target.result)
-            // // };
-        } else {
-            setPdfError("Please select only pdf file types");
-            setPdf(null);
-        }
-    }   else {
-        console.log("Please Select File");
-    }
-  };
-
-  const handleChange2 = (file) => {
-        setFile2(file);
-    }
-  const handleChange3 = (file) => {
-    setFile3(file);
-  };
-  const handleChange4 = (file) => {
-    setFile4(file);
-  };
-  const handleChange5 = (file) => {
-    setFile5(file);
-  };
-  const handleChange6 = (file) => {
-    setFile6(file);
-  };
-  const handleChange7 = (file) => {
-    setFile7(file);
-  };
-  const handleChange8 = (file) => {
-    setFile8(file);
-  };
-  const handleChange9 = (file) => {
-    setFile9(file);
-  };
-  const handleChange10 = (file) => {
-    setFile10(file);
-  };
-  const handleChange11 = (file) => {
-    setFile11(file);
-  };
-  const handleChange12 = (file) => {
-    setFile12(file);
-  };
-
-  const onChangeHandler = (event)=>{
-    console.log(event.target.files[0]);
-    let selectedFile = event.target.files[0];
-    const data = new FormData()
-    data.append('file', event.target.files[0])
-    console.log(data);
-    axios.post("/upload", data,{
-
-    })
-    .then(response =>{
-      console.log(response);
-    })
-    .catch(e=>console.log(e));
+  const updateDatabase = () => {
+      setLoading(true)
+      let docTypes=[]
+      for(var key in docDetail) {
+          if(docDetail.hasOwnProperty(key)) {
+            var item= docDetail[key]
+            // console.log(item)
+            docTypes.push({
+              documentTypeID: item.documentTypeID,
+              isUploaded: item.isUploaded,
+            });
+          }
+      }
+      axios
+        .post("/uploadDocTypeSubmit", {
+          docTypes: docTypes,
+          resourceID: "RIHU2BDE",
+        })
+        .then((response) => {
+          console.log(response)
+          setLoading(false);
+        })
+        .catch((e) => {
+          setLoading(false);
+        });
   }
+
+  const uploadDocument = (file, key) => {
+    // console.log(pdf.result);
+    console.log(file);
+    console.log(key);
+    var formData = new FormData();
+
+    formData.append("uploadedFile", file);
+    formData.append("resourceID", "RIHU2BDE");
+    formData.append("documentTypeID", docDetail[key].documentTypeID);
+    console.log(formData);
+    setLoading(true)
+    axios
+      .post("/uploadFile", formData, {
+
+      })
+      .then((response) => {
+        console.log(response);
+        setLoading(false);
+        if (response.status === 200) {
+          let tempDocDetail = { ...docDetail };
+          console.log(tempDocDetail[key].isUploaded);
+          tempDocDetail[key].value = null;
+          tempDocDetail[key].isUploaded = true;
+          setDocDetail(tempDocDetail);
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.response.error);
+      });
+  };
+
+  const handleChange1 = (file1) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file1.value = file1;
+    tempDocDetail.file1.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange2 = (file2) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file2.value = file2;
+    tempDocDetail.file2.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange3 = (file3) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file3.value = file3;
+    tempDocDetail.file3.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange4 = (file4) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file4.value = file4;
+    tempDocDetail.file4.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange5 = (file5) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file5.value = file5;
+    tempDocDetail.file5.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange6 = (file6) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file6.value = file6;
+    tempDocDetail.file6.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange7 = (file7) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file7.value = file7;
+    tempDocDetail.file7.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange8 = (file8) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file8.value = file8;
+    tempDocDetail.file8.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange9 = (file9) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file9.value = file9;
+    tempDocDetail.file9.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange10 = (file10) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file10.value = file10;
+    tempDocDetail.file10.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange11 = (file11) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file11.value = file11;
+    tempDocDetail.file11.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
+
+  const handleChange12 = (file12) => {
+    let tempDocDetail = { ...docDetail };
+    tempDocDetail.file12.value = file12;
+    tempDocDetail.file12.isUploaded = false;
+    setDocDetail(tempDocDetail);
+  };
 
   return (
     <div>
       <Box>
-        <Paper elevation={24} style={{ height:620,margin:10, overflow:'auto'}}>
+        <Paper
+          elevation={24}
+          style={{ height: 620, margin: 10, overflow: "auto" }}
+        >
           <Grid>
             <h1
               style={{
                 textAlign: "center",
                 padding: "20px 10px",
                 justifyContent: "center",
-                margin:'0px auto'
+                margin: "0px auto",
               }}
             >
               Upload Documents
@@ -176,26 +241,50 @@ const updateDatabase = () => {
             </h1>
           </Grid>
 
-          <input type="file" name="file" onChange={(e)=>onChangeHandler(e)}/>
+          {/* <input type="file" name="file" onChange={(e) => onChangeHandler(e)} /> */}
 
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
               <Grid>
-                <h3 >Address Proof - Govt. Doc</h3>
+                <h3>Address Proof - Govt. Doc</h3>
               </Grid>
-              <Grid >
-                <FileUploader
-                // {/* <Input */}
-                    // type="file"
-                  multiple={false}
-                  handleChange={handleChange1}
-                // handleChange={(event)=> handleChange1(event.target.value)}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file1 ? `File name: ${file1.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange1}
+                      name="file1"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file1.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file1.value
+                      ? `File name: ${docDetail.file1.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file1.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file1.value, "file1");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
@@ -203,51 +292,131 @@ const updateDatabase = () => {
                 <h3>Identity Proof of Establishment</h3>
               </Grid>
               <Grid>
-                <FileUploader
-                  multiple={false}
-                  handleChange={handleChange2}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file2 ? `File name: ${file2.name}` : "No files uploaded"}
-                </p>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange2}
+                      name="file2"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file2.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file2.value
+                      ? `File name: ${(docDetail.file2.value.name)}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file2.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file2.value, "file2");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
+
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>Shop Act Gumasta</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange3}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file3 ? `File name: ${file3.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange3}
+                      name="file3"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file3.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file3.value
+                      ? `File name: ${docDetail.file3.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file3.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file3.value, "file3");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>GST Certificate</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange4}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file4 ? `File name: ${file4.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange4}
+                      name="file4"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file4.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file4.value
+                      ? `File name: ${docDetail.file4.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file4.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file4.value, "file4");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -256,34 +425,86 @@ const updateDatabase = () => {
               <Grid>
                 <h3>PAN Card</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange5}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file5 ? `File name: ${file5.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange5}
+                      name="file5"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file5.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file5.value
+                      ? `File name: ${docDetail.file5.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file5.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file5.value, "file5");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>Aadhar Card</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange6}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file6 ? `File name: ${file6.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange6}
+                      name="file6"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file6.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file6.value
+                      ? `File name: ${docDetail.file6.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file6.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file6.value, "file6");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -292,34 +513,86 @@ const updateDatabase = () => {
               <Grid>
                 <h3>ESIC</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange7}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file7 ? `File name: ${file7.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange7}
+                      name="file7"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file7.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file7.value
+                      ? `File name: ${docDetail.file7.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file7.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file7.value, "file7");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>PF</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange8}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file8 ? `File name: ${file8.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange8}
+                      name="file8"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file8.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file8.value
+                      ? `File name: ${docDetail.file8.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file8.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file8.value, "file8");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -328,36 +601,86 @@ const updateDatabase = () => {
               <Grid>
                 <h3>Labour License</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange9}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file9 ? `File name: ${file9.name}` : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange9}
+                      name="file9"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file9.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file9.value
+                      ? `File name: ${docDetail.file9.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file9.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file9.value, "file9");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>MSME Udyog Aadhar</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange10}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file10
-                    ? `File name: ${file10.name}`
-                    : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange10}
+                      name="file10"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file10.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file10.value
+                      ? `File name: ${docDetail.file10.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file10.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file10.value, "file10");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -366,38 +689,86 @@ const updateDatabase = () => {
               <Grid>
                 <h3>A Class Certificate for Electrical Work</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange11}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file11
-                    ? `File name: ${file11.name}`
-                    : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange11}
+                      name="file11"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file11.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file11.value
+                      ? `File name: ${docDetail.file11.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file11.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file11.value, "file11");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
               <Grid>
                 <h3>Work Experience Certificate</h3>
               </Grid>
-              <Grid style={{ textAlign: "center" }}>
-                <FileUploader
-                  style={{ textAlign: "center" }}
-                  multiple={false}
-                  handleChange={handleChange12}
-                  name="file"
-                  types={fileTypes}
-                />
-                <p>
-                  {file12
-                    ? `File name: ${file12.name}`
-                    : "No files uploaded"}
-                </p>
+              <Grid>
+                <Grid style={{ display: "flex" }}>
+                  <Grid style={{ width: "80%" }}>
+                    <FileUploader
+                      multiple={false}
+                      handleChange={handleChange12}
+                      name="file12"
+                      types={fileTypes}
+                    />
+                  </Grid>
+                  <Checkbox checked={docDetail.file12.isUploaded} />
+                </Grid>
+                <Grid style={{ display: "flex" }}>
+                  <p style={{ textAlign: "left", width: "60%" }}>
+                    {docDetail.file12.value
+                      ? `File name: ${docDetail.file12.value.name}`
+                      : "No files uploaded"}
+                  </p>
+                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                    <Button
+                      style={{
+                        borderRadius: "18px",
+                        // justifyContent: "right",
+                        marginLeft: "0%",
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      disabled={docDetail.file12.value ? false : true}
+                      onClick={() => {
+                        uploadDocument(docDetail.file12.value, "file12");
+                      }}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -405,14 +776,14 @@ const updateDatabase = () => {
           <Grid style={{ textAlign: "center", padding: "2% 5% 2% 0%" }}>
             {/* <SvgButton>Continue</SvgButton> */}
             <Button
-                  style={{ borderRadius: "18px", justifyContent: "center" }}
-                  type="submit"
-                  color="primary"
-                  variant="contained"
-                  onClick={updateDatabase}
-                >
-                  Continue
-                </Button>
+              style={{ borderRadius: "18px", justifyContent: "center" }}
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={updateDatabase}
+            >
+              Continue
+            </Button>
           </Grid>
         </Paper>
       </Box>
