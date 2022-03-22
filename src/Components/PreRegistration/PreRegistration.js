@@ -126,6 +126,7 @@ const PreRegistrationPage = (props) => {
   };
 
   console.log(preRegData);
+
   const handleChange = (key, value) => {
     console.log(key, value);
     let tempPreRegData = { ...preRegData };
@@ -178,6 +179,7 @@ const PreRegistrationPage = (props) => {
     return pattern.test(value);
   };
 
+
   const submitHandler = () => {
     let isValid = true;
     Object.keys(preRegData).map((item) => {
@@ -224,7 +226,6 @@ const PreRegistrationPage = (props) => {
       setError("*Please fill appropriate data");
     }
   };
-
 
 
   let container = null;
