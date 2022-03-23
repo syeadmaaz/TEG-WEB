@@ -25,8 +25,6 @@ import axios from "../../axios_tteg";
 import PreRegCompleted from "./PreRegCompleted";
 
 const PreRegistrationPage = (props) => {
-
-
   const [preRegData, setPreRegData] = useState({
     name: {
       value: null,
@@ -126,6 +124,7 @@ const PreRegistrationPage = (props) => {
   };
 
   console.log(preRegData);
+
   const handleChange = (key, value) => {
     console.log(key, value);
     let tempPreRegData = { ...preRegData };
@@ -225,14 +224,11 @@ const PreRegistrationPage = (props) => {
     }
   };
 
-
-
   let container = null;
   if (loading || !domain || !subscriberType || !domainBase) {
     container = (
       <Box style={{ padding: "2%", width: "85%", margin: "auto" }}>
         <Paper elevation={24} style={{ minHeight: 620 }}>
-
           <Grid className={classes.style}>
             <Grid>
               <h1
@@ -275,7 +271,6 @@ const PreRegistrationPage = (props) => {
       <Box style={{ padding: "2%", width: "85%", margin: "auto" }}>
         <Paper elevation={24} style={{ minHeight: 600 }}>
           <Grid>
-
             <Grid className={classes.style}>
               <Grid>
                 <h1

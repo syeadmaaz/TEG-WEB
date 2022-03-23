@@ -77,6 +77,7 @@ export default function App() {
     },
   });
 
+  
   const updateDatabase = () => {
       setLoading(true)
       let docTypes=[]
