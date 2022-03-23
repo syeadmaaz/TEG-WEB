@@ -28,6 +28,7 @@ export default function UploadDoc2() {
         setLoading(false);
       });
   }, []);
+  
 
   let container = null;
 
