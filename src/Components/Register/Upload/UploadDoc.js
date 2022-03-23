@@ -16,62 +16,62 @@ export default function App() {
 
   const [docDetail, setDocDetail] = useState({
     file1: {
-      documentTypeID: "DT-00001",
+      docTypeID: "DT-00001",
       value: null,
       isUploaded: false,
     },
     file2: {
-      documentTypeID: "DT-00002",
+      docTypeID: "DT-00002",
       value: null,
       isUploaded: false,
     },
     file3: {
-      documentTypeID: "DT-00003",
+      docTypeID: "DT-00003",
       value: null,
       isUploaded: false,
     },
     file4: {
-      documentTypeID: "DT-00004",
+      docTypeID: "DT-00004",
       value: null,
       isUploaded: false,
     },
     file5: {
-      documentTypeID: "DT-00005",
+      docTypeID: "DT-00005",
       value: null,
       isUploaded: false,
     },
     file6: {
-      documentTypeID: "DT-00006",
+      docTypeID: "DT-00006",
       value: null,
       isUploaded: false,
     },
     file7: {
-      documentTypeID: "DT-00007",
+      docTypeID: "DT-00007",
       value: null,
       isUploaded: false,
     },
     file8: {
-      documentTypeID: "DT-00008",
+      docTypeID: "DT-00008",
       value: null,
       isUploaded: false,
     },
     file9: {
-      documentTypeID: "DT-00009",
+      docTypeID: "DT-00009",
       value: null,
       isUploaded: false,
     },
     file10: {
-      documentTypeID: "DT-00010",
+      docTypeID: "DT-00010",
       value: null,
       isUploaded: false,
     },
     file11: {
-      documentTypeID: "DT-00011",
+      docTypeID: "DT-00011",
       value: null,
       isUploaded: false,
     },
     file12: {
-      documentTypeID: "DT-00012",
+      docTypeID: "DT-00012",
       value: null,
       isUploaded: false,
     },
@@ -85,7 +85,7 @@ export default function App() {
             var item= docDetail[key]
             // console.log(item)
             docTypes.push({
-              documentTypeID: item.documentTypeID,
+              docTypeID: item.docTypeID,
               isUploaded: item.isUploaded,
             });
           }
@@ -112,7 +112,7 @@ export default function App() {
 
     formData.append("uploadedFile", file);
     formData.append("resourceID", "RIHU2BDE");
-    formData.append("documentTypeID", docDetail[key].documentTypeID);
+    formData.append("docTypeID", docDetail[key].docTypeID);
     console.log(formData);
     setLoading(true)
     axios
