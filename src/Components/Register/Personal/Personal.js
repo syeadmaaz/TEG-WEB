@@ -71,6 +71,7 @@ export default function Personal(props) {
     .catch(e=>console.log(e))
   },[])
 
+
   const handleChange = (key,value)=>{
     const tempPIData = { ... piData};
     if(value){
@@ -84,6 +85,7 @@ export default function Personal(props) {
     setPIData(tempPIData);
   };
 
+  
   const submitHandler = ()=>{
     let isValid = true;
     Object.keys(piData).map(item=>{
@@ -130,7 +132,6 @@ export default function Personal(props) {
 
   console.log(piData);
   
-
   let container = null;
   if(loading || !entity){
     container = (

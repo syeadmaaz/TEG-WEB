@@ -49,7 +49,8 @@ const PreRegCompleted = (props)=>{
                                     <Button variant="text">Remind me later</Button>
                                 </div>
                                 <div>
-                                    <Button variant="contained" onClick = {()=>{
+                                    <Button variant="contained" 
+                                    onClick = {()=>{
                                         setMoveToRegistration(true)
                                         setScreen(null)
                                     }}>Next</Button>

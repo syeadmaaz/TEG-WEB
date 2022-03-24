@@ -18,15 +18,14 @@ function App() {
   return (
     <div className="App">
       {/* <LoginPage/>   */}
-      <UploadDoc/>
-      {/* <UploadDoc2/> */}
       {/* <Tabs/> */}
       {/* <SidePanel/> */}
       {/* <Personal/> */}
       {/* <BankDetails/> */}
       {/* <LoginPage/> */}
+      <UploadDoc/>
+      {/* <UploadDoc1/> */}
       {/* <CompanyAssociation/> */}
-      {/* <UploadDoc/> */}
       {/* <OverView/> */}
       {/* <SubType/> */}
       {/* <PreRegistration/> */}

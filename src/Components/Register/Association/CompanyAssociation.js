@@ -126,6 +126,7 @@ export default function CompanyAssociation(props) {
     }
   };
 
+  
   // isAssociated,userID : individualID,companyID,companyName,managerName,managerContactNo
   const submitHandler = ()=>{
     setLoading(true);
@@ -136,7 +137,7 @@ export default function CompanyAssociation(props) {
       isAssociated: asscDetails.isAssociated.value,
       managerName:asscDetails.managerName.value,
       managerContactNo:asscDetails.managerContactNo.value,
-      userID:'RIHU2BDE'
+      resourceID: props.resourceID
     })
     .then(response=>{
       if(response.status === 200){

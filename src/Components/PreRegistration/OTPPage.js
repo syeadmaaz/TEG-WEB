@@ -33,6 +33,7 @@ const OTPPage = (props)=>{
     }
 
     const submitHandler = ()=>{
+        setLoading(true);
         axios.post('/validateOtp',{
             resourceID:props.resourceID,
             otp:otp

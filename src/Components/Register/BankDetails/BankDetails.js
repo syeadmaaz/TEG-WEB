@@ -57,6 +57,7 @@ export default function BankDetails(props) {
     })
   },[])
 
+  
   const handleChange = (key,value)=>{
     const tempBankDetails = { ... bankDetails};
     if(value){
