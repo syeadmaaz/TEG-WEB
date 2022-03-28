@@ -86,7 +86,7 @@ export default function BankDetails(props) {
         ifscCode:bankDetails.ifscCode.value,
         accountNumber:bankDetails.accountNumber.value,
         bankName:bankDetails.bankName.value,
-        accountHoldername:bankDetails.accountHoldername.value,
+        accountHolderName:bankDetails.accountHoldername.value,
         resourceID:props.resourceID,
         branchAddress:bankDetails.branchAddress.value,
       })
