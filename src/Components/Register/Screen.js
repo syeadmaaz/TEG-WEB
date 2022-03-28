@@ -4,6 +4,7 @@ import BankDetails from "./BankDetails/BankDetails";
 import UploadDoc from "./Upload/UploadDoc";
 import SubType from "./subType/SubType";
 import CompanyAssociation from "./Association/CompanyAssociation";
+import FinalSubmit from "./FinalSubmit/FinalSubmit"
 
 const Screen = (props) => {
     
@@ -87,7 +88,11 @@ const Screen = (props) => {
     );
   } else if (props.menu === 6) {
     container = (
-      <SubType/>
+      <FinalSubmit
+        resourceTypeID={props.resourceTypeID}
+        resourceID={props.resourceID}
+        getData={(data) => getDataFromScreens(data)}
+      />
     );
   }
   return (
