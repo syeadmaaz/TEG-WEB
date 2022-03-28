@@ -10,7 +10,8 @@ import Checkbox from "@mui/material/Checkbox";
 const fileTypes = ["PDF"];
 const fileType = ["application/pdf"];
 
-export default function App() {
+export default function App(props) {
+  console.log(props)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -94,14 +95,23 @@ export default function App() {
       axios
         .post("/uploadDocTypeSubmit", {
           docTypes: docTypes,
-          resourceID: "RIHU2BDE",
+          resourceID: props.resourceID,
         })
         .then((response) => {
-          console.log(response)
+          console.log(response);
           setLoading(false);
+          if (response.status === 200) {
+            props.getData({
+              status: 1,
+              moveToScreen: 6,
+            });     
+          } else {
+            setError(response.data.error);
+          }
         })
         .catch((e) => {
           setLoading(false);
+          setError(e.response.data.error);
         });
   }
 
@@ -112,7 +122,7 @@ export default function App() {
     var formData = new FormData();
 
     formData.append("uploadedFile", file);
-    formData.append("resourceID", "RIHU2BDE");
+    formData.append("resourceID", props.resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
     console.log(formData);
     setLoading(true)
