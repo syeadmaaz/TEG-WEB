@@ -82,7 +82,7 @@ function SidePanel(props) {
                 </Box>
               </Grid>
 
-              <Grid onClick={() => updateActive(4)}>
+              {/* <Grid onClick={() => updateActive(4)}>
                 <Box
                   className={
                     activeState === 4 ? classes.active : classes.deActive
@@ -91,7 +91,7 @@ function SidePanel(props) {
                   <Tab className="tb" label="Subscription Type" value="4" />
                   {(props.completed.length > 0 && props.completed.find(element => element === 4) === 4)?(<CheckCircleOutlineIcon style={{color:'green',padding:5}}/>):null}
                 </Box>
-              </Grid>
+              </Grid> */}
             </div>
           </TabList>
           {/* <TabPanel value="1"><Personal/></TabPanel>

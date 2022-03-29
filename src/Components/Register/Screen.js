@@ -58,21 +58,23 @@ const Screen = (props) => {
         getData={(data) => getDataFromScreens(data)}
       />
     );
-  } else if (props.menu === 4) {
-    container = (
-      <SubType
-        resourceTypeID={props.resourceTypeID}
-        resourceID={props.resourceID}
-        disabled={
-          props.completed.length > 0 &&
-          props.completed.find((element) => element === 4) === 4
-            ? true
-            : false
-        }
-        getData={(data) => getDataFromScreens(data)}
-      />
-    );
-  } else if (props.menu === 5) {
+  } 
+  // else if (props.menu === 4) {
+  //   container = (
+  //     <SubType
+  //       resourceTypeID={props.resourceTypeID}
+  //       resourceID={props.resourceID}
+  //       disabled={
+  //         props.completed.length > 0 &&
+  //         props.completed.find((element) => element === 4) === 4
+  //           ? true
+  //           : false
+  //       }
+  //       getData={(data) => getDataFromScreens(data)}
+  //     />
+  //   );
+  // } 
+  else if (props.menu === 5) {
     container = (
       <CompanyAssociation
         resourceTypeID={props.resourceTypeID}
