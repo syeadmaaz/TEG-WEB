@@ -17,13 +17,13 @@ import UploadDoc1 from "./Components/Register/Upload/UploadDoc1";
 function App() {
   return (
     <div className="App">
-      <LoginPage/>  
+      {/* <LoginPage/>   */}
       {/* <Tabs/> */}
       {/* <SidePanel/> */}
       {/* <Personal/> */}
       {/* <BankDetails/> */}
       {/* <LoginPage/> */}
-      {/* <UploadDoc/> */}
+      <UploadDoc/>
       {/* <UploadDoc1/> */}
       {/* <CompanyAssociation/> */}
       {/* <OverView/> */}
