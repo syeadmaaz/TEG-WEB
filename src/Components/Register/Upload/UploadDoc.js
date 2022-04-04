@@ -130,7 +130,9 @@ export default function App(props) {
         });
   }
 
+
   const uploadDocument = (file, key) => {
+
     // console.log(pdf.result);
     console.log(file);
     console.log(key);
@@ -139,12 +141,12 @@ export default function App(props) {
     formData.append("uploadedFile", file);
     formData.append("resourceID", props.resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
+
     console.log(formData);
 
     setLoading(true)
     axios
       .post("/uploadFile", formData, {
-
       })
       .then((response) => {
         console.log(response);
@@ -165,6 +167,7 @@ export default function App(props) {
       });
   };
 
+  
   const handleChange1 = (file1) => {
     let tempDocDetail = { ...docDetail };
     tempDocDetail.file1.value = file1;
@@ -248,6 +251,7 @@ export default function App(props) {
     tempDocDetail.file12.isUploaded = false;
     setDocDetail(tempDocDetail);
   };
+
 
   return (
     <div>
