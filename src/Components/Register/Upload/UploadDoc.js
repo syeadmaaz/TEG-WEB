@@ -8,7 +8,7 @@ import axios from "../../../axios_tteg";
 import Checkbox from "@mui/material/Checkbox";
 
 const fileTypes = ["PDF"];
-const fileType = ["application/pdf"];
+
 
 export default function App(props) {
   console.log(props)
@@ -140,6 +140,7 @@ export default function App(props) {
     formData.append("resourceID", props.resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
     console.log(formData);
+
     setLoading(true)
     axios
       .post("/uploadFile", formData, {

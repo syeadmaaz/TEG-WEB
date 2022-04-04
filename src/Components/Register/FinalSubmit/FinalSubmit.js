@@ -33,6 +33,7 @@ export default function FinalSubmit(props) {
     axios
       .post("/submit", {
         resourceID: props.resourceID,
+        resourceTypeID: props.resourceTypeID,
       })
       .then((response) => {
         setLoading(false);
