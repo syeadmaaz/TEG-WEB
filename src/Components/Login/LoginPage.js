@@ -15,6 +15,10 @@ const LoginPage = () => {
         navigate('/register')
     }
 
+    const submitHandler = () => {
+        console.log("Sign-In Clicked")
+    }
+
     return container = (
         <div className={classes.stylePage}>
             {/* <div className={classes.left}>
@@ -47,14 +51,14 @@ const LoginPage = () => {
                 <TextField
                     className={classes.textSyle}
                     style={{marginTop:"2%"}}
-                    label="Email"
-                    placeholder="Enter Your Email"
+                    label="ResourceID"
+                    placeholder="Enter Your ResourceID"
                     variant="outlined"
                     // fullWidth
                     // onChange={(event) => textFieldHandler(event.target.value, 1)}
                 />
 
-                <TextField
+                {/* <TextField
                     className={classes.textSyle}
                     style={{marginTop:"5%"}}
                     label="Password"
@@ -62,7 +66,7 @@ const LoginPage = () => {
                     variant="outlined"
                     // fullWidth
                     // onChange={(event) => textFieldHandler(event.target.value, 1)}
-                />
+                /> */}
                 <p style={{marginLeft:"7%"}} align="left">
                     <Checkbox />
                     Remember Me
@@ -73,7 +77,7 @@ const LoginPage = () => {
                     type="submit"
                     color="primary"
                     variant="contained"
-                    // onClick={() => submitHandler()}
+                    onClick={() => submitHandler()}
                 >
                     Sign In
                     <LoginIcon style={{marginLeft:"2%", borderRadius: "20px"}}/>

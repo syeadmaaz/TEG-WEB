@@ -8,7 +8,7 @@ import axios from "../../../axios_tteg";
 import Checkbox from "@mui/material/Checkbox";
 
 const fileTypes = ["PDF"];
-const fileType = ["application/pdf"];
+
 
 export default function App(props) {
   console.log(props)
@@ -20,61 +20,73 @@ export default function App(props) {
       docTypeID: "DT-00001",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file2: {
       docTypeID: "DT-00002",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file3: {
       docTypeID: "DT-00003",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file4: {
       docTypeID: "DT-00004",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file5: {
       docTypeID: "DT-00005",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file6: {
       docTypeID: "DT-00006",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file7: {
       docTypeID: "DT-00007",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file8: {
       docTypeID: "DT-00008",
       value: null,
       isUploaded: false,
+      path: null
     },
     file9: {
       docTypeID: "DT-00009",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file10: {
       docTypeID: "DT-00010",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file11: {
       docTypeID: "DT-00011",
       value: null,
       isUploaded: false,
+      path: null,
     },
     file12: {
       docTypeID: "DT-00012",
       value: null,
       isUploaded: false,
+      path: null,
     },
   });
 
@@ -89,9 +101,12 @@ export default function App(props) {
             docTypes.push({
               docTypeID: item.docTypeID,
               isUploaded: item.isUploaded,
+              path: item.path
             });
           }
       }
+
+      console.log(docTypes)
       axios
         .post("/uploadDocTypeSubmit", {
           docTypes: docTypes,
@@ -128,6 +143,7 @@ export default function App(props) {
     formData.append("docTypeID", docDetail[key].docTypeID);
 
     console.log(formData);
+
     setLoading(true)
     axios
       .post("/uploadFile", formData, {
@@ -136,10 +152,12 @@ export default function App(props) {
         console.log(response);
         setLoading(false);
         if (response.status === 200) {
+          console.log(response)
           let tempDocDetail = { ...docDetail };
           console.log(tempDocDetail[key].isUploaded);
           tempDocDetail[key].value = null;
           tempDocDetail[key].isUploaded = true;
+          tempDocDetail[key].path= response.data.path
           setDocDetail(tempDocDetail);
         }
       })
