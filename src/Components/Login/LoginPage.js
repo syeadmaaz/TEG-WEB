@@ -12,9 +12,9 @@ import {
 import LoginIcon from "@mui/icons-material/Login";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios_tteg";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   let navigate = useNavigate();
   const [resourceID, setResourceID] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -41,11 +41,17 @@ const LoginPage = () => {
         console.log(response);
         if (response.status === 201) {
           console.log("OTP Sent");
+          props.getData(1);
+          props.getUserData({
+              resourceID: response.data.user.resourceID,
+              resourceTypeID: response.data.user.resourceTypeID
+          })
         } else {
           setError(response.data.error);
         }
       })
       .catch((e) => {
+          console.log(e.response)
         setLoading(false);
         setError(e.response.data.error);
       });
@@ -96,6 +102,7 @@ const LoginPage = () => {
             <Checkbox />
             Remember Me
           </p>
+          <p style={{color: "red"}}>{error}</p>
           <Button
             className={classes.Button}
             style={{ borderRadius: "18px" }}
