@@ -14,6 +14,7 @@ import LegalInfoFree from './Components/PreRegistration/LegalInfoFree';
 // import UploadTest from './Components/Register/Upload/UploadTest';
 import UploadDoc1 from "./Components/Register/Upload/UploadDoc1";
 import LoginContainer from "./Components/Login/LoginContainer"
+import Main from "./Components/Dashboard/Components/Main.js"
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       {/* <LegalInfoFree/> */}
       {/* <Registration/> */}
       <LoginContainer/>
+      {/* <Main/> */}
     </div>
   );
 }
