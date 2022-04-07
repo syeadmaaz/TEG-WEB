@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import axios from "../../../axios_tteg";
+import "./CompanyAssociation.css";
 
 import {
   InputLabel,
@@ -18,52 +19,171 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
+import { ClassNames } from "@emotion/react";
 
 export default function CompanyAssociation(props) {
-  console.log(props)
+  console.log(props);
   // const [error, setError] = React.useState(null);
   // const [helperText, setHelperText] = React.useState(null);
 
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = React.useState(null);
   const [cName, setCName] = React.useState(null);
   const [compName, setCompName] = React.useState("");
-  const [error,setError] = React.useState(null);
-  const [disabled,setDisabled] = useState(props.disabled);
-  const [asscDetails,setAsscDetails] = React.useState({
-    isAssociated:{
-      value:null
+  const [error, setError] = React.useState(null);
+  const [disabled, setDisabled] = useState(props.disabled);
+  const [asscDetails, setAsscDetails] = React.useState({
+    isAssociated: {
+      value: null,
     },
-    companyID:{
-      value:null
+    companyID: {
+      value: null,
     },
-    companyName:{
-      value:null
+    companyName: {
+      value: null,
     },
-    managerName:{
-      value:null
+    managerName: {
+      value: null,
     },
-    managerContactNo:{
-      value:null
-    }
-  })
+    managerContactNo: {
+      value: null,
+    },
+  });
   //const [newCompanyData,setNewCompanyData]
 
+  // NEW CHANGES ARE FROM HERE
+  let [show, setShow] = useState(false);
+  let [show1, setShow1] = useState(true);
 
-  useEffect(()=>{
-    setLoading(true)
-    axios.get('/getCompanyDetails')
-    .then(response=>{
-      console.log(response)
-      console.log(response.data)
-      setLoading(false)
-      setCName(response.data);
-    })
-    .catch(e=>{
-      setLoading(false)
-    })
-  },[])
+  const [searchQuery, setSearchQuery] = React.useState("");
 
+  const Companies = [
+    {
+      label: "JIO",
+      value: "1",
+    },
+    {
+      label: "BOAT",
+      value: "2",
+    },
+  ];
+
+  const function2 = (value) => {
+    console.log(value);
+    Companies.map((item) => {
+      if (value.toLowercase() === item.label.toLowerCase()) {
+        const value1 = true;
+        show = value1;
+        setShow(value1);
+        console.log("found");
+      }
+    });
+
+    if (show == false) {
+      console.log("not found");
+      const value2 = false;
+      show1 = value2;
+      setShow1(value2);
+    }
+  };
+
+  let container3 = null;
+  let container4 = null;
+  let container6 = null;
+
+  // if the company name searched is found in our database
+  if (show1 === true && show === true) {
+    container6 = (
+      <div>
+        <div>
+          <input
+            value={registrationData.association.companyName.value}
+            onChangeText={(text) =>
+              inputHandler("association", "companyName", text)
+            }
+            style={{ marginLeft: -40, marginTop: 20 }}
+            label="Company Name"
+            keyboardType="default"
+            disabled={true}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // if the company name is not present in our database
+  if (
+    registrationData.association.companyID.value === 6 ||
+    (show1 === false && show === false)
+  ) {
+    container4 = (
+      <div>
+        <Text
+          style={[
+            {
+              marginLeft: -40,
+              marginTop: 15,
+              color: "red",
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          {" "}
+          Company couldn't be found! Please enter your Company Details below.
+        </Text>
+        <div>
+          <TextField
+            value={registrationData.association.companyName.value}
+            onChangeText={(text) =>
+              inputHandler("association", "companyName", text)
+            }
+            style={{ marginLeft: -40, marginTop: 15 }}
+            label="Company Name"
+            keyboardType="default"
+          />
+        </div>
+        <div>
+          <TextField
+            value={registrationData.association.managerName.value}
+            onChangeText={(text) =>
+              inputHandler("association", "managerName", text)
+            }
+            style={{ marginLeft: -40 }}
+            label="Manager Name"
+            keyboardType="default"
+          />
+          <div>
+            <TextField
+              value={registrationData.association.managerContactNo.value}
+              onChangeText={(text) =>
+                inputHandler("association", "managerContactNo", text)
+              }
+              style={{ marginLeft: -40 }}
+              label="Contact No."
+              keyboardType="numeric"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // CHANGES ARE TILL HERE
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/getCompanyDetails")
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        setLoading(false);
+        setCName(response.data);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  }, []);
 
   // const handleChange = (event) => {
   //   setValue(event.target.value);
@@ -73,13 +193,12 @@ export default function CompanyAssociation(props) {
   // };
 
   const compChange = (value) => {
-    let tempAsscDetails = {... asscDetails};
-    if(value === 20){
-      setCompName(value)
+    let tempAsscDetails = { ...asscDetails };
+    if (value === 20) {
+      setCompName(value);
       tempAsscDetails.companyID.value = null;
       tempAsscDetails.isAssociated.value = true;
-    }
-    else{
+    } else {
       setCompName(null);
       tempAsscDetails.companyID.value = value;
       tempAsscDetails.isAssociated.value = true;
@@ -87,19 +206,19 @@ export default function CompanyAssociation(props) {
       tempAsscDetails.managerName.value = null;
       tempAsscDetails.managerContactNo.value = null;
     }
-    setAsscDetails(tempAsscDetails)
+    setAsscDetails(tempAsscDetails);
   };
 
-  const changeHandler = (key,value)=>{
-    let tempAsscDetails = {... asscDetails};
+  const changeHandler = (key, value) => {
+    let tempAsscDetails = { ...asscDetails };
     tempAsscDetails[key].value = value;
-    setAsscDetails(tempAsscDetails)
-  }
+    setAsscDetails(tempAsscDetails);
+  };
 
   const handleChange = (val) => {
     if (val) {
-      if(val == 2){
-        let tempAsscDetails = {... asscDetails};
+      if (val == 2) {
+        let tempAsscDetails = { ...asscDetails };
         setCompName(null);
         tempAsscDetails.companyID.value = null;
         tempAsscDetails.isAssociated.value = false;
@@ -107,9 +226,8 @@ export default function CompanyAssociation(props) {
         tempAsscDetails.managerName.value = null;
         tempAsscDetails.managerContactNo.value = null;
         setAsscDetails(tempAsscDetails);
-      }
-      else if(val == 3){
-        let tempAsscDetails = {... asscDetails};
+      } else if (val == 3) {
+        let tempAsscDetails = { ...asscDetails };
         setCompName(null);
         tempAsscDetails.companyID.value = null;
         tempAsscDetails.isAssociated.value = true;
@@ -120,39 +238,38 @@ export default function CompanyAssociation(props) {
       setValue(val);
       console.log(val);
       // extendPage(val);
-    } 
-    else {
+    } else {
       setValue(null);
     }
   };
 
-  
   // isAssociated,userID : individualID,companyID,companyName,managerName,managerContactNo
-  const submitHandler = ()=>{
+  const submitHandler = () => {
     setLoading(true);
     console.log(asscDetails);
-    axios.post('/userAssociation',{
-      companyID:asscDetails.companyID.value,
-      companyName:asscDetails.companyName.value,
-      isAssociated: asscDetails.isAssociated.value,
-      managerName:asscDetails.managerName.value,
-      managerContactNo:asscDetails.managerContactNo.value,
-      resourceID: props.resourceID
-    })
-    .then(response=>{
-      if(response.status === 200){
-        setDisabled(true);
-        props.getData({
-          status:1,
-          moveToScreen:3
-        })
-      }
-    })
-    .catch(e=>{
-      setLoading(false);
-      setError(e.response.data.error)
-    })
-  }
+    axios
+      .post("/userAssociation", {
+        companyID: asscDetails.companyID.value,
+        companyName: asscDetails.companyName.value,
+        isAssociated: asscDetails.isAssociated.value,
+        managerName: asscDetails.managerName.value,
+        managerContactNo: asscDetails.managerContactNo.value,
+        resourceID: props.resourceID,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setDisabled(true);
+          props.getData({
+            status: 1,
+            moveToScreen: 3,
+          });
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.response.data.error);
+      });
+  };
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -194,11 +311,22 @@ export default function CompanyAssociation(props) {
               name="controlled-radio-buttons-group"
               value={value}
               onChange={(event) => handleChange(event.target.value)}
-              
             >
-              <FormControlLabel value="1" control={<Radio disabled = {disabled} />} label="Yes" />
-              <FormControlLabel value="2" control={<Radio disabled = {disabled} />} label="No" />
-              <FormControlLabel value="3" control={<Radio disabled = {disabled} />} label="Prefer Not to Disclose" />
+              <FormControlLabel
+                value="1"
+                control={<Radio disabled={disabled} />}
+                label="Yes"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio disabled={disabled} />}
+                label="No"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio disabled={disabled} />}
+                label="Prefer Not to Disclose"
+              />
             </RadioGroup>
           </FormControl>
         </Grid>
@@ -221,14 +349,12 @@ export default function CompanyAssociation(props) {
               style={{ textAlign: "left" }}
               labelId="demo-simple-select-filled-label"
               id="demo-simple-select-filled"
-              value={compName?compName:(asscDetails.companyID.value)}
-              onChange={(e)=>compChange(e.target.value)}
+              value={compName ? compName : asscDetails.companyID.value}
+              onChange={(e) => compChange(e.target.value)}
             >
               {/* <MenuItem value={10}>Select a Company Name</MenuItem> */}
               {cName.map((item) => (
-                <MenuItem value={item.userID}>
-                  {item.entityName}
-                </MenuItem>
+                <MenuItem value={item.userID}>{item.entityName}</MenuItem>
               ))}
               <MenuItem value={20}>Others</MenuItem>
             </Select>
@@ -239,9 +365,8 @@ export default function CompanyAssociation(props) {
   }
 
   if (loading && !cName) {
-    <CircularProgress/>
+    <CircularProgress />;
   }
-
 
   let conatiner3 = null;
   if (compName == 20 && value == 1) {
@@ -253,8 +378,8 @@ export default function CompanyAssociation(props) {
             id="filled-basic"
             label="Company Name"
             variant="filled"
-            value = {asscDetails.companyName.value}
-            onChange = {(e)=>changeHandler('companyName',e.target.value)}
+            value={asscDetails.companyName.value}
+            onChange={(e) => changeHandler("companyName", e.target.value)}
           />
         </Grid>
         <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
@@ -263,8 +388,8 @@ export default function CompanyAssociation(props) {
             id="filled-basic"
             label="Manager Name"
             variant="filled"
-            value = {asscDetails.managerName.value}
-            onChange = {(e)=>changeHandler('managerName',e.target.value)}
+            value={asscDetails.managerName.value}
+            onChange={(e) => changeHandler("managerName", e.target.value)}
           />
         </Grid>
         <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
@@ -273,8 +398,8 @@ export default function CompanyAssociation(props) {
             id="filled-basic"
             label="Contact No"
             variant="filled"
-            value = {asscDetails.managerContactNo.value}
-            onChange = {(e)=>changeHandler('managerContactNo',e.target.value)}
+            value={asscDetails.managerContactNo.value}
+            onChange={(e) => changeHandler("managerContactNo", e.target.value)}
           />
         </Grid>
       </div>
@@ -282,19 +407,21 @@ export default function CompanyAssociation(props) {
   }
 
   return (
-    <Paper elevation={24} style={{ height: 620,margin: 10,overflow: 'auto' }}>
+    <Paper elevation={24} style={{ height: 620, margin: 10, overflow: "auto" }}>
       {container}
       {container1}
       {conatiner3}
-      <p style = {{fontSize:12, textAlign: 'center',color:'red', margin:5}}>{error}</p>
+      <p style={{ fontSize: 12, textAlign: "center", color: "red", margin: 5 }}>
+        {error}
+      </p>
       <Grid style={{ textAlign: "center", padding: "2% 0% 3% 0%" }}>
         <Button
           style={{ borderRadius: "18px", justifyContent: "center" }}
           type="submit"
           color="primary"
           variant="contained"
-          onClick = {submitHandler}
-          disabled = {disabled}
+          onClick={submitHandler}
+          disabled={disabled}
         >
           Continue
         </Button>
