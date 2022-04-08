@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import axios from "../../../axios_tteg";
+import SearchField from "react-search-field";
 import "./CompanyAssociation.css";
 
 import {
@@ -22,14 +23,10 @@ import {
 import { ClassNames } from "@emotion/react";
 
 export default function CompanyAssociation(props) {
-  console.log(props);
-  // const [error, setError] = React.useState(null);
-  // const [helperText, setHelperText] = React.useState(null);
+  // console.log(props);
 
   const [loading, setLoading] = useState(false);
   const [value, setValue] = React.useState(null);
-  const [cName, setCName] = React.useState(null);
-  const [compName, setCompName] = React.useState("");
   const [error, setError] = React.useState(null);
   const [disabled, setDisabled] = useState(props.disabled);
   const [asscDetails, setAsscDetails] = React.useState({
@@ -42,6 +39,9 @@ export default function CompanyAssociation(props) {
     companyName: {
       value: null,
     },
+    companyPhone: {
+      value: null,
+    },
     managerName: {
       value: null,
     },
@@ -49,165 +49,9 @@ export default function CompanyAssociation(props) {
       value: null,
     },
   });
-  //const [newCompanyData,setNewCompanyData]
 
-  // NEW CHANGES ARE FROM HERE
-  let [show, setShow] = useState(false);
-  let [show1, setShow1] = useState(true);
-
-  const [searchQuery, setSearchQuery] = React.useState("");
-
-  const Companies = [
-    {
-      label: "JIO",
-      value: "1",
-    },
-    {
-      label: "BOAT",
-      value: "2",
-    },
-  ];
-
-  const function2 = (value) => {
-    console.log(value);
-    Companies.map((item) => {
-      if (value.toLowercase() === item.label.toLowerCase()) {
-        const value1 = true;
-        show = value1;
-        setShow(value1);
-        console.log("found");
-      }
-    });
-
-    if (show == false) {
-      console.log("not found");
-      const value2 = false;
-      show1 = value2;
-      setShow1(value2);
-    }
-  };
-
-  let container3 = null;
-  let container4 = null;
-  let container6 = null;
-
-  // if the company name searched is found in our database
-  if (show1 === true && show === true) {
-    container6 = (
-      <div>
-        <div>
-          <input
-            value={registrationData.association.companyName.value}
-            onChangeText={(text) =>
-              inputHandler("association", "companyName", text)
-            }
-            style={{ marginLeft: -40, marginTop: 20 }}
-            label="Company Name"
-            keyboardType="default"
-            disabled={true}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // if the company name is not present in our database
-  if (
-    registrationData.association.companyID.value === 6 ||
-    (show1 === false && show === false)
-  ) {
-    container4 = (
-      <div>
-        <Text
-          style={[
-            {
-              marginLeft: -40,
-              marginTop: 15,
-              color: "red",
-              fontWeight: "bold",
-            },
-          ]}
-        >
-          {" "}
-          Company couldn't be found! Please enter your Company Details below.
-        </Text>
-        <div>
-          <TextField
-            value={registrationData.association.companyName.value}
-            onChangeText={(text) =>
-              inputHandler("association", "companyName", text)
-            }
-            style={{ marginLeft: -40, marginTop: 15 }}
-            label="Company Name"
-            keyboardType="default"
-          />
-        </div>
-        <div>
-          <TextField
-            value={registrationData.association.managerName.value}
-            onChangeText={(text) =>
-              inputHandler("association", "managerName", text)
-            }
-            style={{ marginLeft: -40 }}
-            label="Manager Name"
-            keyboardType="default"
-          />
-          <div>
-            <TextField
-              value={registrationData.association.managerContactNo.value}
-              onChangeText={(text) =>
-                inputHandler("association", "managerContactNo", text)
-              }
-              style={{ marginLeft: -40 }}
-              label="Contact No."
-              keyboardType="numeric"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // CHANGES ARE TILL HERE
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/getCompanyDetails")
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
-        setLoading(false);
-        setCName(response.data);
-      })
-      .catch((e) => {
-        setLoading(false);
-      });
-  }, []);
-
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  //   console.log(value);
-  //   setHelperText(" ");
-  //   setError(false);
-  // };
-
-  const compChange = (value) => {
-    let tempAsscDetails = { ...asscDetails };
-    if (value === 20) {
-      setCompName(value);
-      tempAsscDetails.companyID.value = null;
-      tempAsscDetails.isAssociated.value = true;
-    } else {
-      setCompName(null);
-      tempAsscDetails.companyID.value = value;
-      tempAsscDetails.isAssociated.value = true;
-      tempAsscDetails.companyName.value = null;
-      tempAsscDetails.managerName.value = null;
-      tempAsscDetails.managerContactNo.value = null;
-    }
-    setAsscDetails(tempAsscDetails);
-  };
+  const [companyMessage, setCompanyMessage] = useState(null);
+  const [companyFound, setCompanyFound] = useState(null);
 
   const changeHandler = (key, value) => {
     let tempAsscDetails = { ...asscDetails };
@@ -219,16 +63,14 @@ export default function CompanyAssociation(props) {
     if (val) {
       if (val == 2) {
         let tempAsscDetails = { ...asscDetails };
-        setCompName(null);
         tempAsscDetails.companyID.value = null;
         tempAsscDetails.isAssociated.value = false;
         tempAsscDetails.companyName.value = null;
         tempAsscDetails.managerName.value = null;
         tempAsscDetails.managerContactNo.value = null;
         setAsscDetails(tempAsscDetails);
-      } else if (val == 3) {
+      } else if (val == 1 || val == 3) {
         let tempAsscDetails = { ...asscDetails };
-        setCompName(null);
         tempAsscDetails.companyID.value = null;
         tempAsscDetails.isAssociated.value = true;
         tempAsscDetails.companyName.value = null;
@@ -237,7 +79,6 @@ export default function CompanyAssociation(props) {
       }
       setValue(val);
       console.log(val);
-      // extendPage(val);
     } else {
       setValue(null);
     }
@@ -271,21 +112,53 @@ export default function CompanyAssociation(props) {
       });
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  const handleSearchChange = (value, event) => {
+    console.log(value);
+    let tempPreRegData = { ...asscDetails };
+    if (!value || value === null || value === "") {
+      const found = null;
+      setCompanyFound(found);
+      tempPreRegData["companyName"].value = null;
+      tempPreRegData["companyPhone"].value = null;
+    }
+    setAsscDetails(tempPreRegData);
+  };
+  const checkValidMobileNUmber = (value) => {
+    let pattern = /^[0-9]{1,10}$/;
+    return pattern.test(value);
+  };
+  const handleSearchClick = (enteredValue) => {
+    let tempPreRegData = { ...asscDetails };
+    let valid = checkValidMobileNUmber(enteredValue);
+    if (valid) {
+      tempPreRegData["companyPhone"].value = enteredValue;
+      tempPreRegData["companyName"].value = null;
+    } else {
+      tempPreRegData["companyName"].value = enteredValue;
+      tempPreRegData["companyPhone"].value = null;
+    }
+    setAsscDetails(tempPreRegData);
 
-  //   if (value === 1) {
-  //     setHelperText("You got it!");
-  //     setError(false);
-  //   } else if (value === 2) {
-  //     // setHelperText("Sorry, wrong answer!");
-  //     // setError(true);
-  //   } else {
-  //     setHelperText("Please select an option.");
-  //     setError(true);
-  //   }
-  // };
-
+    axios
+      .post("/getCompanyDetails", {
+        companyName: asscDetails.companyName.value,
+        companyMobileNumber: asscDetails.companyPhone.value,
+      })
+      .then((response) => {
+        setLoading(false);
+        if (response.status === 200) {
+          console.log(response.data.message);
+          setCompanyMessage(response.data.message);
+          setCompanyFound(true);
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setCompanyFound(false);
+        setCompanyMessage(e.response.data.message);
+        console.log(e.response.data.message);
+      });
+  };
   let container = null;
   container = (
     <div>
@@ -334,44 +207,42 @@ export default function CompanyAssociation(props) {
     </div>
   );
 
+  // when the individual is associated with a company i.e it clicks on Yes
   let container1 = null;
 
-  if (value == 1 && cName) {
-    console.log(value);
+  if (value == 1) {
     container1 = (
       <div>
         <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
           <FormControl variant="filled" style={{ width: "60%" }}>
-            <InputLabel id="demo-simple-select-filled-label">
-              Company Name
-            </InputLabel>
-            <Select
-              style={{ textAlign: "left" }}
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
-              value={compName ? compName : asscDetails.companyID.value}
-              onChange={(e) => compChange(e.target.value)}
-            >
-              {/* <MenuItem value={10}>Select a Company Name</MenuItem> */}
-              {cName.map((item) => (
-                <MenuItem value={item.userID}>{item.entityName}</MenuItem>
-              ))}
-              <MenuItem value={20}>Others</MenuItem>
-            </Select>
+            <SearchField
+              placeholder="Search for Company Name or Phone Number"
+              onSearchClick={(value) => {
+                handleSearchClick(value);
+              }}
+              onChange={(value, event) => {
+                handleSearchChange(value, event);
+              }}
+            />
           </FormControl>
         </Grid>
       </div>
     );
   }
 
-  if (loading && !cName) {
+  if (loading) {
     <CircularProgress />;
   }
 
-  let conatiner3 = null;
-  if (compName == 20 && value == 1) {
-    conatiner3 = (
+  let container3 = null;
+  if (companyFound === false && value == 1) {
+    container3 = (
       <div>
+        <p
+          style={{ fontSize: 12, textAlign: "center", color: "red", margin: 5 }}
+        >
+          {companyMessage}
+        </p>
         <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
           <TextField
             style={{ padding: "1% 1% 1% 0%", width: "60%" }}
@@ -404,13 +275,37 @@ export default function CompanyAssociation(props) {
         </Grid>
       </div>
     );
+  } else if (companyFound === true && value == 1) {
+    container3 = (
+      <div>
+        <p
+          style={{
+            fontSize: 12,
+            textAlign: "center",
+            color: "green",
+            margin: 5,
+          }}
+        >
+          {companyMessage}
+        </p>
+        <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
+          <TextField
+            style={{ padding: "1% 1% 1% 0%", width: "60%" }}
+            id="filled-basic"
+            label="Company Name"
+            variant="filled"
+            value={asscDetails.companyName.value}
+            onChange={(e) => changeHandler("companyName", e.target.value)}
+          />
+        </Grid>
+      </div>
+    );
   }
-
   return (
     <Paper elevation={24} style={{ height: 620, margin: 10, overflow: "auto" }}>
       {container}
       {container1}
-      {conatiner3}
+      {container3}
       <p style={{ fontSize: 12, textAlign: "center", color: "red", margin: 5 }}>
         {error}
       </p>
