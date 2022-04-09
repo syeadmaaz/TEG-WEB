@@ -33,6 +33,12 @@ export default function CompanyAssociation(props) {
     isAssociated: {
       value: null,
     },
+    searchCompanyName: {
+      value: null
+    },
+    searchCompanyPhone: {
+      value: null
+    },
     companyID: {
       value: null,
     },
@@ -119,8 +125,8 @@ export default function CompanyAssociation(props) {
     if (!value || value === null || value === "") {
       const found = null;
       setCompanyFound(found);
-      tempPreRegData["companyName"].value = null;
-      tempPreRegData["companyPhone"].value = null;
+      tempPreRegData["searchCompanyName"].value = null;
+      tempPreRegData["searchCompanyPhone"].value = null;
     }
     setAsscDetails(tempPreRegData);
   };
@@ -132,18 +138,18 @@ export default function CompanyAssociation(props) {
     let tempPreRegData = { ...asscDetails };
     let valid = checkValidMobileNUmber(enteredValue);
     if (valid) {
-      tempPreRegData["companyPhone"].value = enteredValue;
-      tempPreRegData["companyName"].value = null;
+      tempPreRegData["searchCompanyPhone"].value = enteredValue;
+      tempPreRegData["searchCompanyName"].value = null;
     } else {
-      tempPreRegData["companyName"].value = enteredValue;
-      tempPreRegData["companyPhone"].value = null;
+      tempPreRegData["searchCompanyName"].value = enteredValue;
+      tempPreRegData["searchCompanyPhone"].value = null;
     }
     setAsscDetails(tempPreRegData);
 
     axios
       .post("/getCompanyDetails", {
-        companyName: asscDetails.companyName.value,
-        companyMobileNumber: asscDetails.companyPhone.value,
+        companyName: asscDetails.searchCompanyName.value,
+        companyMobileNumber: asscDetails.searchCompanyPhone.value,
       })
       .then((response) => {
         setLoading(false);
@@ -159,6 +165,9 @@ export default function CompanyAssociation(props) {
       .catch((e) => {
         setLoading(false);
         setCompanyFound(false);
+        let tempAsscDetails = {... asscDetails}
+        tempAsscDetails['companyID'].value = null;
+        setAsscDetails(tempAsscDetails);
         setCompanyMessage(e.response.data.message);
         console.log(e.response.data.message);
       });
@@ -299,7 +308,7 @@ export default function CompanyAssociation(props) {
             label="Company Name"
             variant="filled"
             disabled={true}
-            value={asscDetails.companyName.value}
+            value={asscDetails.searchCompanyName.value}
             onChange={(e) => changeHandler("companyName", e.target.value)}
           />
         </Grid>
