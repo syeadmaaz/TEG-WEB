@@ -98,6 +98,7 @@ export default function CompanyAssociation(props) {
         resourceID: props.resourceID,
       })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
           setDisabled(true);
           props.getData({
@@ -146,10 +147,13 @@ export default function CompanyAssociation(props) {
       })
       .then((response) => {
         setLoading(false);
+        let tempPreRegData = {...asscDetails}
         if (response.status === 200) {
-          console.log(response.data.message);
+          console.log(response.data);
+          tempPreRegData['companyID'].value = response.data.resourceID
           setCompanyMessage(response.data.message);
           setCompanyFound(true);
+          setAsscDetails(tempPreRegData);
         }
       })
       .catch((e) => {
