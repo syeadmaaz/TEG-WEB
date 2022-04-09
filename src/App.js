@@ -24,10 +24,10 @@ function App() {
   const [goToDashboard, setGoToDashboard] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
     console.log(cookies.get("userData"));
-    if (await cookies.get("userData")) {
+    if (cookies.get("userData")) {
       setLoading(false);
       setGoToDashboard(true);
     } else {
@@ -39,11 +39,13 @@ function App() {
   let Landing = null;
   if (loading) {
     Landing = (
-      <Box style={{ padding: "10% 0", width: "85%", margin: "auto" }}>
-        <Grid style={{ textAlign: "center" }}>
-          <CircularProgress />
-        </Grid>
-      </Box>
+      <Paper>
+        <Box>
+          <Grid style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </Grid>
+        </Box>
+      </Paper>
     );
   } else {
     Landing = <div>{goToDashboard ? <Main /> : <LoginContainer />}</div>;
@@ -52,7 +54,8 @@ function App() {
   return (
     <div className="App">
       {Landing}
-      
+
+      {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
       {/* <Tabs/> */}
       {/* <SidePanel/> */}
@@ -67,7 +70,6 @@ function App() {
       {/* <PreRegistration/> */}
       {/* <LegalInfoFree/> */}
       {/* <Registration/> */}
-      {/* <LoginContainer/> */}
       {/* <Main/> */}
     </div>
   );
