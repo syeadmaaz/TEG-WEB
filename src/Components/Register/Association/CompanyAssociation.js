@@ -20,7 +20,7 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-import { ClassNames } from "@emotion/react";
+
 
 export default function CompanyAssociation(props) {
   // console.log(props);
@@ -87,7 +87,7 @@ export default function CompanyAssociation(props) {
   // isAssociated,userID : individualID,companyID,companyName,managerName,managerContactNo
   const submitHandler = () => {
     setLoading(true);
-    console.log(asscDetails);
+    // console.log(asscDetails);
     axios
       .post("/userAssociation", {
         companyID: asscDetails.companyID.value,
@@ -243,9 +243,9 @@ export default function CompanyAssociation(props) {
     container3 = (
       <div>
         <p
-          style={{ fontSize: 12, textAlign: "center", color: "red", margin: 5 }}
+          style={{ fontSize: 14,  color: "red", margin: 5, marginLeft:200 }}
         >
-          {companyMessage}
+          {companyMessage}, Please enter company details properly!
         </p>
         <Grid style={{ textAlign: "left", padding: "0% 0% 1% 3%" }}>
           <TextField
@@ -253,7 +253,7 @@ export default function CompanyAssociation(props) {
             id="filled-basic"
             label="Company Name"
             variant="filled"
-            value={asscDetails.companyName.value}
+            value={null}
             onChange={(e) => changeHandler("companyName", e.target.value)}
           />
         </Grid>
@@ -284,10 +284,10 @@ export default function CompanyAssociation(props) {
       <div>
         <p
           style={{
-            fontSize: 12,
-            textAlign: "center",
+            fontSize: 14,
             color: "green",
             margin: 5,
+            marginLeft:300
           }}
         >
           {companyMessage}
@@ -298,6 +298,7 @@ export default function CompanyAssociation(props) {
             id="filled-basic"
             label="Company Name"
             variant="filled"
+            disabled={true}
             value={asscDetails.companyName.value}
             onChange={(e) => changeHandler("companyName", e.target.value)}
           />
