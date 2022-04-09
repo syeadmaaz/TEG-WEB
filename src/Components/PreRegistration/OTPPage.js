@@ -20,7 +20,10 @@ import {
   
   } from "@mui/material";
   import axios from "../../axios_tteg"
+  import Cookies from 'universal-cookie'
 
+  const cookies = new Cookies();
+  
 const OTPPage = (props)=>{
     console.log(props)
 
@@ -42,6 +45,15 @@ const OTPPage = (props)=>{
             setLoading(false)
             console.log(response);
             if(response.status === 200){
+                if(response.data.registrationComplete == true && response.data.isVerified == true) {
+                    cookies.set('userData',{
+                      resourceID: response.data.resourceID,
+                      resourceTypeID: response.data.resourceTypeID,
+                      subscriberTypeID: response.data.subscriberTypeID,
+                      domainID: response.data.domainID,
+                    }, { path: "/" });
+                    // console.log(cookies.get("userData"));
+                  }
                 props.getData(2);
             }
         })

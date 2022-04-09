@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import PreRegistrationContainer from './Components/PreRegistration/PreRegistrationContainer';
 import reportWebVitals from './reportWebVitals';
-import Login from "./Components/Login/LoginPage";
 
 ReactDOM.render(
     <BrowserRouter>
