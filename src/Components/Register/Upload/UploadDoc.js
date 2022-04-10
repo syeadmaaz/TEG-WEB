@@ -7,7 +7,7 @@ import classes from "./UploadDoc.module.css";
 import axios from "../../../axios_tteg";
 import Checkbox from "@mui/material/Checkbox";
 
-const fileTypes = ["PDF"];
+const fileTypes = ["PDF","JPG","JPEG"];
 
 
 export default function App(props) {
