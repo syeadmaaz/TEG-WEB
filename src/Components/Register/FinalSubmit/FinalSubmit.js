@@ -21,12 +21,14 @@ import {
 } from "@mui/material";
 import axios from "../../../axios_tteg";
 import { WindowSharp } from "@mui/icons-material";
+import Main from "../../../Components/Dashboard/Components/Main.js";
 
 
 export default function FinalSubmit(props) {
   const [agreeCheckBox, setAgreeCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(null)
+  const [goToDashboard, setGoToDashboard] = useState(false);
 
   const submitHandler = () => {
     setLoading(true);
@@ -40,6 +42,7 @@ export default function FinalSubmit(props) {
         console.log(response);
         if (response.status === 200) {
           alert(response.data.message);
+          // setGoToDashboard(true);
         } else {
           setError(response.data.error);
         }
@@ -50,7 +53,7 @@ export default function FinalSubmit(props) {
       });
   }
 
-  return (
+  let container1 = (
     <div>
       <Box style={{ padding: "2%", width: "85%", margin: "auto" }}>
         <Paper elevation={24} style={{ height: 620 }}>
@@ -85,9 +88,10 @@ export default function FinalSubmit(props) {
             }}
           >
             <div>
-              <Button variant="contained" 
-              disabled={!agreeCheckBox}
-              onClick={submitHandler}
+              <Button
+                variant="contained"
+                disabled={!agreeCheckBox}
+                onClick={submitHandler}
               >
                 Submit
               </Button>
@@ -97,4 +101,6 @@ export default function FinalSubmit(props) {
       </Box>
     </div>
   );
+
+  return <div>{goToDashboard ? <Main /> : container1}</div>;
 }
