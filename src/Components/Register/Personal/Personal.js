@@ -83,7 +83,7 @@ export default function Personal(props) {
       tempPIData[key].valid = false;
     }
     setPIData(tempPIData);
-  };
+  }
 
   
   const submitHandler = ()=>{
