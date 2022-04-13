@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Planning from './Planning'
-import TaskManager from './TaskManager'
+import OnboardManager from './OnboardManager/OnboardManager'
 import logo from '../Resources/final-lo1.png'
 import {FormControl, InputLabel, Select, MenuItem, AppBar} from '@mui/material';
 
@@ -97,7 +97,7 @@ function Main() {
         </div>
         
         <div className='switch'>
-            {screen === "Task-Manager" ? <TaskManager /> : <Planning />}
+            {screen === "Task-Manager" ? <OnboardManager /> : <Planning />}
         </div>
         
 

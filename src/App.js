@@ -17,6 +17,7 @@ import UploadDoc1 from "./Components/Register/Upload/UploadDoc1";
 import LoginContainer from "./Components/Login/LoginContainer";
 import Main from "./Components/Dashboard/Components/Main.js";
 import Cookies from "universal-cookie";
+import DashboardContainer from "./Components/Dashboard/Components/DashboardContainer";
 
 const cookies = new Cookies();
 
@@ -48,7 +49,7 @@ function App() {
       </Paper>
     );
   } else {
-    Landing = <div>{goToDashboard ? <Main /> : <LoginContainer />}</div>;
+    Landing = <div>{goToDashboard ? <DashboardContainer resourceID={cookies.get("userData").resourceID}/> : <LoginContainer />}</div>;
   }
 
   return (

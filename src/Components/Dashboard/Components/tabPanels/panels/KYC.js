@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Tab, Paper, Grid, Typography, AppBar} from '@mui/material';
 
-function KYC() {
+function KYC(props) {
   return (
     <div>  
       <Grid container spacing={5} >
