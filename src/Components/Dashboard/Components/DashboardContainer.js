@@ -6,7 +6,7 @@ import OnboardManager from "./OnboardManager/OnboardManager"
 const DashboardContainer = (props)=>{
     let container = null;
     container = (
-        <div>
+        <div style={{background:'#F2F2F2'}}>
             <div>
                 {/*Header Part*/}
                 <Header/>

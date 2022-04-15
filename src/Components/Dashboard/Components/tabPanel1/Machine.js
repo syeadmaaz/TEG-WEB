@@ -13,9 +13,9 @@ function Machine(props) {
   if(goToOnboarding){
     container5 = (
       <div>
-        <div style={{textAlign:'initial'}}>
-      <DoDisturbOnOutlinedIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(false)}/>
-      </div>
+        <div style={{textAlign:'right'}}>
+          <DoDisturbOnOutlinedIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(false)}/>
+        </div>
         <MachineOnBoard resourceID={props.resourceID}
         />
       </div>
@@ -24,7 +24,7 @@ function Machine(props) {
 
   else{
     container5 = (
-      <div style={{textAlign:'initial'}}>
+      <div style={{textAlign:'right'}}>
         <AddCircleOutlineSharpIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(true)}/>
       </div>
     )
