@@ -294,7 +294,6 @@ const handleChange2 = (key,value)=>{
       <Box style={{ padding: "2% 2% 2% 2%" }}>
         <Paper elevation={8}>
           <Grid>
-           
             <Grid>
               <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
                 Machine Info

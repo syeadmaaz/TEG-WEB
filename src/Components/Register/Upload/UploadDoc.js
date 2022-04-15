@@ -9,7 +9,6 @@ import Checkbox from "@mui/material/Checkbox";
 
 const fileTypes = ["PDF","JPG","JPEG"];
 
-
 export default function App(props) {
   console.log(props)
   const [loading, setLoading] = useState(false);

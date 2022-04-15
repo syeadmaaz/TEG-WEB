@@ -85,7 +85,7 @@ const PreRegistrationPage = (props) => {
         setTotalSubscriberType(response.data.subscriberType);
         handleSubscriberType(response.data.subscriberType);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.log(e.response.data.error));
   }, []);
 
   const handleChangeDomain = (data) => {
@@ -403,9 +403,6 @@ const PreRegistrationPage = (props) => {
                           handleChange("subscriberTypeID", e.target.value)
                         }
                       >
-                        {/* <MenuItem value={10}>Option 1</MenuItem>
-                        <MenuItem value={20}>Option 2</MenuItem>
-                        <MenuItem value={30}>Option 3</MenuItem>  */}
                         {subscriberType.map((item) => (
                           <MenuItem value={item.subscriberTypeID}>
                             {item.subscriberTypeName}
