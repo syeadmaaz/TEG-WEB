@@ -191,9 +191,9 @@ const handleChange2 = (key,value)=>{
     container2 = (
       <div>
             <Grid>
-              <h1 style={{ textAlign: "center" }}>
+              <h3 style={{ textAlign: "center" }}>
                 Please Enter Owner Details
-              </h1>
+              </h3>
             </Grid>
             <Grid className={classes.details}>
               <Grid className={classes.owner}>
@@ -291,13 +291,13 @@ const handleChange2 = (key,value)=>{
   let container = null;
   container = (
     <div>
-      <Box style={{ padding: "2% 2% 2% 2%" }}>
-        <Paper elevation={8}>
+      <Box>
+        <Paper >
           <Grid>
             <Grid>
-              <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
+              <h3 style={{ textAlign: "center", margin:20 }}>
                 Machine Info
-              </h1>
+              </h3>
             </Grid>
 
             <Grid>

@@ -2,7 +2,8 @@ import React,{useState} from 'react'
 import LoginPage from './LoginPage';
 import OTPPage from "../PreRegistration/OTPPage"
 import OverView from '../PreRegistration/OverView';
-import Main from "../Dashboard/Components/Main.js"
+import Main from "../Dashboard/Components/Main.js";
+import DashboardContainer from '../Dashboard/Components/DashboardContainer';
 
 export default function LoginContainer() {
     const [page, setPage] = useState(0);
@@ -34,7 +35,7 @@ export default function LoginContainer() {
     }
     else if(page===2) {
         container = (
-           <Main/>
+           <DashboardContainer/>
         );
     }
 

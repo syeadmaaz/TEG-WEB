@@ -51,7 +51,7 @@ const OnboardManager = (props) =>{
             </Box>
           </div>
         </div>
-        <div>
+        <div style={{background:'white',height:'65vh',overflow:'auto',boxShadow:'0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)'}}>
           <TabContext value={value}>
             
             <TabPanel value="1"><Machine resourceID={props.resourceID}/></TabPanel>
