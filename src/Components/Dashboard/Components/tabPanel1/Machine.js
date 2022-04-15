@@ -13,7 +13,7 @@ function Machine(props) {
   if(goToOnboarding){
     container5 = (
       <div>
-        <div style={{textAlign:'right'}}>
+        <div style={{textAlign:'left'}}>
           <DoDisturbOnOutlinedIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(false)}/>
         </div>
         <MachineOnBoard resourceID={props.resourceID}
@@ -24,7 +24,7 @@ function Machine(props) {
 
   else{
     container5 = (
-      <div style={{textAlign:'right'}}>
+      <div style={{textAlign:'left'}}>
         <AddCircleOutlineSharpIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(true)}/>
       </div>
     )

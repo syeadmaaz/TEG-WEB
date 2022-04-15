@@ -295,9 +295,9 @@ const handleChange2 = (key,value)=>{
         <Paper >
           <Grid>
             <Grid>
-              <h3 style={{ textAlign: "center", margin:20 }}>
+              <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
                 Machine Info
-              </h3>
+              </h1>
             </Grid>
 
             <Grid>
@@ -359,13 +359,14 @@ const handleChange2 = (key,value)=>{
                       onChange={(e)=>handleChange1('serialNum',e.target.value)}
                     />
                   </Grid>
-                  <Grid style={{ width: "70%", marginLeft: "15%" }}>
+                  <Grid style={{ width: "70%", marginLeft: "15%", padding: "1% 0% 1% 0%"}}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <Stack spacing={1}>
                         <DesktopDatePicker
-                          label="For desktop"
+                          label="Purchase Date*"
                           value={value}
                           minDate={new Date("2017-01-01")}
+                          maxDate={new Date()}
                           onChange={(newValue) => {
                             setValue(newValue);
                           }}
@@ -392,7 +393,7 @@ const handleChange2 = (key,value)=>{
 
             <Grid className={classes.styling1}>
               <Grid className={classes.alignItems}>
-                <Grid>
+                <Grid style={{textAlign: "left"}}>
                   <h3>Machine Invoice*</h3>
                 </Grid>
                 <Grid>
@@ -436,7 +437,7 @@ const handleChange2 = (key,value)=>{
               </Grid>
 
               <Grid className={classes.alignItems}>
-                <Grid>
+                <Grid style={{textAlign: "left"}}>
                   <h3>Machine Operational Manual*</h3>
                 </Grid>
                 <Grid>
@@ -480,7 +481,7 @@ const handleChange2 = (key,value)=>{
               </Grid>
             </Grid>
           </Grid>
-          <Grid style={{ textAlign: "left", padding: "0% 0% 0% 8%" }}>
+          <Grid style={{ textAlign: "left", padding: "0% 0% 0% 7%" }}>
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">
                 <h3>Are You the Owner of this Machine ?*</h3>

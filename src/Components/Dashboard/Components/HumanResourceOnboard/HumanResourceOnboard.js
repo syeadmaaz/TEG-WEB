@@ -47,7 +47,7 @@ export default function HumanResourceOnboard(props) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [disable, setDisable] = useState(false);
+  const [disable, setDisable] = useState(true);
 
   const [domain, setDomain] = React.useState("");
   const [domainBase, setDomainBase] = useState(null);
@@ -138,7 +138,6 @@ export default function HumanResourceOnboard(props) {
       value: null,
       valid: false,
     },
-    
 
   });
 
@@ -150,8 +149,6 @@ export default function HumanResourceOnboard(props) {
       path: null,
     },
   })
-
-
 
 
 
@@ -309,20 +306,19 @@ export default function HumanResourceOnboard(props) {
   let container = null;
   if (loading || !domain || !domainBase) {
     container = (
-      <Paper elevation={8} style={{ height: 643, margin:10}}>
         <Box>
           <Grid>
             <CircularProgress />
           </Grid>
         </Box>
-      </Paper>
     );
   } else {
     container = (
       <div>
-        <Box style={{ padding: "2% 2% 2% 2%" }}>
-          <Paper elevation={8} className={classes.Main} 
-            style={{ height: 635, margin:10, overflow:'auto'}}>
+        <Box>
+          <Paper elevation={8}
+            // style={{ height: 635, margin:10, overflow:'auto'}}
+            >
             <Grid>
               <Grid>
                 <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
@@ -622,7 +618,7 @@ export default function HumanResourceOnboard(props) {
                 <h3
                   style={{
                     textAlign: "left",
-                    padding: "0% 0% 0% 105px",
+                    padding: "0% 0% 0% 7%",
                     color: "grey",
                   }}
                 >
@@ -675,7 +671,7 @@ export default function HumanResourceOnboard(props) {
               <Grid className={classes.displaying}>
                 <Grid className={classes.style}>
                   <Grid
-                    style={{ textAlign: "left", padding: "0% 0% 0% 104px" }}
+                    style={{ textAlign: "left", padding: "0% 0% 0% 15%" }}
                   >
                     <FormControl>
                       <FormLabel id="demo-radio-buttons-group-label">
@@ -736,7 +732,7 @@ export default function HumanResourceOnboard(props) {
                 </Grid>
               </Grid>
 
-              <Grid style={{padding:"0% 0% 0% 105px"}}>
+              <Grid style={{textAlign: "left", padding:"0% 0% 0% 7%"}}>
                 <Grid>
                   <h3 style={{ textAlign: "left", color: "grey" }}>
                     Fitness Certificate*
@@ -753,7 +749,9 @@ export default function HumanResourceOnboard(props) {
                           types={fileTypes}
                         />
                       </Grid>
-                      <Checkbox checked={docDetail.fitnessCertificate.isUploaded} />
+                      <Grid className={classes.alignItems}>
+                        <Checkbox checked={docDetail.fitnessCertificate.isUploaded} />
+                      </Grid>
                     </Grid>
                     <Grid style={{ display: "flex" }}>
                       <p style={{ textAlign: "left", width: "60%" }}>

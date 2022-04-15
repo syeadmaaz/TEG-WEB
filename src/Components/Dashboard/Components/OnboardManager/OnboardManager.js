@@ -58,7 +58,6 @@ const OnboardManager = (props) =>{
             <TabPanel value="2"><HR /></TabPanel>
             <TabPanel value="3"><KYC /></TabPanel>
         
-
           </TabContext>
         </div>
 {/*           

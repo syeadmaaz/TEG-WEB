@@ -109,7 +109,7 @@
 @media only screen and (min-width: 1200px) {
     .alignItems{
         width: 50%;
-        padding: 1% 2% 1% 8%;
+        padding: 1% 2% 1% 7%;
     }
     .styling1{
         display: flex;

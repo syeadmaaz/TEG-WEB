@@ -26,36 +26,36 @@ function App() {
   const [goToDashboard, setGoToDashboard] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   console.log(cookies.get("userData"));
-  //   if (cookies.get("userData")) {
-  //     setLoading(false);
-  //     setGoToDashboard(true);
-  //   } else {
-  //     setLoading(false);
-  //     setGoToDashboard(false);
-  //   }
-  // });
+  useEffect(() => {
+    setLoading(true);
+    console.log(cookies.get("userData"));
+    if (cookies.get("userData")) {
+      setLoading(false);
+      setGoToDashboard(true);
+    } else {
+      setLoading(false);
+      setGoToDashboard(false);
+    }
+  });
 
-  // let Landing = null;
-  // if (loading) {
-  //   Landing = (
-  //     <Paper>
-  //       <Box>
-  //         <Grid style={{ textAlign: "center" }}>
-  //           <CircularProgress />
-  //         </Grid>
-  //       </Box>
-  //     </Paper>
-  //   );
-  // } else {
-  //   Landing = <div>{goToDashboard ? <DashboardContainer resourceID={cookies.get("userData").resourceID}/> : <LoginContainer />}</div>;
-  // }
+  let Landing = null;
+  if (loading) {
+    Landing = (
+      <Paper>
+        <Box>
+          <Grid style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </Grid>
+        </Box>
+      </Paper>
+    );
+  } else {
+    Landing = <div>{goToDashboard ? <DashboardContainer resourceID={cookies.get("userData").resourceID}/> : <LoginContainer />}</div>;
+  }
 
   return (
     <div className="App">
-      {/* {Landing} */}
+      {Landing}
 
       {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
@@ -73,7 +73,7 @@ function App() {
       {/* <LegalInfoFree/> */}
       {/* <Registration/> */}
       {/* <Main/> */}
-      <HumanResourceOnboard/>
+      {/* <HumanResourceOnboard/> */}
     </div>
   );
 }
