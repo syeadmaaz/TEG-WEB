@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Paper } from "@mui/material";
 import classes from "./machineOnboard.module.css";
 import { TextField } from "@mui/material";
@@ -16,11 +16,10 @@ import { RadioGroup } from "@mui/material";
 import { Radio } from "@mui/material";
 import { FormLabel } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import DashboardContainer from "../DashboardContainer";
-import DoDisturbOnOutlinedIcon from '@mui/icons-material/DoDisturbOnOutlined';
+import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
 import axios from "../../../../axios_tteg";
-
 
 export default function MachineOnboard(props) {
   const fileTypes = ["PDF"];
@@ -35,90 +34,105 @@ export default function MachineOnboard(props) {
   const [error, setError] = useState(false);
 
   const [miData, setMIData] = useState({
-      mType:{
-          value: 0,
-          valid: false
-      },
-      mMakeNum:{
-        value: null,
-        valid: false
+    mType: {
+      value: 0,
+      valid: false,
     },
-    mCap:{
-        value: null,
-        valid: false
+    oem: {
+      value: null,
+      valid: false,
     },
-    serialNumber:{
-        value: null,
-        valid: false
+    machineCapacity: {
+      value: null,
+      valid: false,
     },
-    mAvailableSectors:{
-        value: null,
-        valid: false
+    modelNumber: {
+      value: null,
+      valid: false,
+    },
+    machineAvailableSectors: {
+      value: null,
+      valid: false,
     },
   });
-  const handleChange1 = (key,value)=>{
-    const tempMIData = { ... miData};
-    if(value){
+
+  const [machineType, setMachineType] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/getMachineType", {})
+      .then((response) => {
+        console.log(response.data);
+        setLoading(false);
+        setMachineType(response.data.machineType);
+        // setDomain(response.data.domain);
+        // setDomainBase(response.data.domainBase);
+        // setTotalSubscriberType(response.data.subscriberType);
+        // handleSubscriberType(response.data.subscriberType);
+      })
+      .catch((e) => console.log(e.response.data.error));
+  }, []);
+
+  const handleChange1 = (key, value) => {
+    const tempMIData = { ...miData };
+    if (value) {
       tempMIData[key].value = value;
       tempMIData[key].valid = true;
-    }
-    else{
+    } else {
       tempMIData[key].value = value;
       tempMIData[key].valid = false;
     }
     setMIData(tempMIData);
-  }
+  };
 
   /*-----------Machine Owner-------- */
 
   const [oiData, setOIData] = useState({
-    idName:{
-        value: null,
-        valid: false
+    idName: {
+      value: null,
+      valid: false,
     },
-    idEmail:{
+    idEmail: {
       value: null,
-      valid: false
-  },
-  bankName:{
+      valid: false,
+    },
+    bankName: {
       value: null,
-      valid: false
-  },
-  ifscCode:{
+      valid: false,
+    },
+    ifscCode: {
       value: null,
-      valid: false
-  },
-  idAddress:{
+      valid: false,
+    },
+    idAddress: {
       value: null,
-      valid: false
-  },
-  mobNum:{
-    value: null,
-    valid: false
-},
-accNum:{
-    value: null,
-    valid: false
-},
-branchAddress:{
-    value: null,
-    valid: false
-},
-});
-const handleChange2 = (key,value)=>{
-  const tempOIData = { ... oiData};
-  if(value){
-    tempOIData[key].value = value;
-    tempOIData[key].valid = true;
-  }
-  else{
-    tempOIData[key].value = value;
-    tempOIData[key].valid = false;
-  }
-  setOIData(tempOIData);
-}
-
-
+      valid: false,
+    },
+    mobNum: {
+      value: null,
+      valid: false,
+    },
+    accNum: {
+      value: null,
+      valid: false,
+    },
+    branchAddress: {
+      value: null,
+      valid: false,
+    },
+  });
+  const handleChange2 = (key, value) => {
+    const tempOIData = { ...oiData };
+    if (value) {
+      tempOIData[key].value = value;
+      tempOIData[key].valid = true;
+    } else {
+      tempOIData[key].value = value;
+      tempOIData[key].valid = false;
+    }
+    setOIData(tempOIData);
+  };
 
   const [docDetail, setDocDetail] = useState({
     file1: {
@@ -136,7 +150,6 @@ const handleChange2 = (key,value)=>{
   });
 
   const uploadDocument = (file, key) => {
-
     // console.log(pdf.result);
     console.log(file);
     console.log(key);
@@ -148,20 +161,19 @@ const handleChange2 = (key,value)=>{
 
     console.log(formData);
 
-    setLoading(true)
+    setLoading(true);
     axios
-      .post("/uploadMachine", formData, {
-      })
+      .post("/uploadMachine", formData, {})
       .then((response) => {
         console.log(response);
         setLoading(false);
         if (response.status === 200) {
-          console.log(response)
+          console.log(response);
           let tempDocDetail = { ...docDetail };
           console.log(tempDocDetail[key].isUploaded);
           tempDocDetail[key].value = null;
           tempDocDetail[key].isUploaded = true;
-          tempDocDetail[key].path= response.data.path
+          tempDocDetail[key].path = response.data.path;
           setDocDetail(tempDocDetail);
         }
       })
@@ -169,6 +181,61 @@ const handleChange2 = (key,value)=>{
         setLoading(false);
         setError(e.response.error);
       });
+  };
+
+  const submitHandler = () => {
+    let tempMI = { ...miData };
+    let tempOI = { ...oiData };
+
+    console.log(tempMI);
+    console.log(tempOI);
+
+    // let isValid = true;
+    // Object.keys(tempHR).map((item) => {
+    //   isValid = isValid && tempHR[item].valid;
+    // });
+
+    // if (isValid) {
+
+    setLoading(true);
+    axios
+      .post("/machineOnboarding", {
+        resourceID: props.resourceID,
+        machineTypeID: tempMI.mType.value,
+        modelNumber: tempMI.modelNumber.value,
+        OEM: tempMI.oem.value,
+        machineCapacityInTonnes: tempMI.machineCapacity.value,
+        machineAvailabilitySectors: tempMI.machineAvailableSectors.value,
+        purchaseDates: value,
+        resourceOwner: setOwnerFound ? true : false,
+        resourceOwnerDetails: {
+          name: tempOI.idName,
+          email: tempOI.idEmail,
+          bankName: tempOI.bankName,
+          ifscCode: tempOI.ifscCode,
+          Address: tempOI.idAddress,
+          mobile: tempOI.mobNum,
+          accountNumber: tempOI.accNum,
+          branchAddress: tempOI.branchAddress,
+        },
+      })
+      .then((response) => {
+        setLoading(false);
+        // console.log(response)
+        if (response.status === 200) {
+          console.log("SUCESSFULL RESPONSE");
+          console.log(response.data);
+        } else {
+          setError(response.data.error);
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.response.data.error);
+      });
+    // } else {
+    //   setError("*Please fill appropraite data");
+    // }
   };
 
   const submitHandle1 = (file1) => {
@@ -184,106 +251,100 @@ const handleChange2 = (key,value)=>{
     setDocDetail(tempDocDetail);
   };
 
-
   let container2 = null;
-  if (ownerFound === '2') {
+  if (ownerFound === "2") {
     console.log(ownerFound);
     container2 = (
       <div>
+        <Grid>
+          <h3 style={{ textAlign: "center" }}>Please Enter Owner Details</h3>
+        </Grid>
+        <Grid className={classes.details}>
+          <Grid className={classes.owner}>
             <Grid>
-              <h3 style={{ textAlign: "center" }}>
-                Please Enter Owner Details
-              </h3>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Name as in govt ID"
+                variant="filled"
+                value={oiData.idName.value}
+                onChange={(e) => handleChange2("idName", e.target.value)}
+              />
             </Grid>
-            <Grid className={classes.details}>
-              <Grid className={classes.owner}>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Name as in govt ID"
-                    variant="filled"
-                    value={oiData.idName.value}
-                    onChange={(e)=>handleChange2('idName',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Email ID"
-                    variant="filled"
-                    value={oiData.idEmail.value}
-                    onChange={(e)=>handleChange2('idEmail',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Bank name "
-                    variant="filled"
-                    value={oiData.bankName.value}
-                    onChange={(e)=>handleChange2('bankName',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="IFSC"
-                    variant="filled"
-                    value={oiData.ifscCode.value}
-                    onChange={(e)=>handleChange2('ifscCode',e.target.value)}
-                  />
-                </Grid>
-              </Grid>
-              <Grid className={classes.owner}>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Address as in govt ID"
-                    variant="filled"
-                    value={oiData.idAddress.value}
-                    onChange={(e)=>handleChange2('idAddress',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Mobile number"
-                    variant="filled"
-                    value={oiData.mobNum.value}
-                    onChange={(e)=>handleChange2('mobNum',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Account number"
-                    variant="filled"
-                    value={oiData.accNum.value}
-                    onChange={(e)=>handleChange2('accNum',e.target.value)}
-                  />
-                </Grid>
-                <Grid>
-                  <TextField
-                    style={{ padding: "1% 1% 1% 1%", width: "70%" }}
-                    id="filled-basic"
-                    label="Branch address "
-                    variant="filled"
-                    value={oiData.branchAddress.value}
-                    onChange={(e)=>handleChange2('branchAddress',e.target.value)}
-                  />
-                </Grid>
-              </Grid>
-             
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Email ID"
+                variant="filled"
+                value={oiData.idEmail.value}
+                onChange={(e) => handleChange2("idEmail", e.target.value)}
+              />
             </Grid>
-                
-          
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Bank name "
+                variant="filled"
+                value={oiData.bankName.value}
+                onChange={(e) => handleChange2("bankName", e.target.value)}
+              />
+            </Grid>
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="IFSC"
+                variant="filled"
+                value={oiData.ifscCode.value}
+                onChange={(e) => handleChange2("ifscCode", e.target.value)}
+              />
+            </Grid>
+          </Grid>
+          <Grid className={classes.owner}>
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Address as in govt ID"
+                variant="filled"
+                value={oiData.idAddress.value}
+                onChange={(e) => handleChange2("idAddress", e.target.value)}
+              />
+            </Grid>
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Mobile number"
+                variant="filled"
+                value={oiData.mobNum.value}
+                onChange={(e) => handleChange2("mobNum", e.target.value)}
+              />
+            </Grid>
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Account number"
+                variant="filled"
+                value={oiData.accNum.value}
+                onChange={(e) => handleChange2("accNum", e.target.value)}
+              />
+            </Grid>
+            <Grid>
+              <TextField
+                style={{ padding: "1% 1% 1% 1%", width: "70%" }}
+                id="filled-basic"
+                label="Branch address "
+                variant="filled"
+                value={oiData.branchAddress.value}
+                onChange={(e) => handleChange2("branchAddress", e.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -292,7 +353,7 @@ const handleChange2 = (key,value)=>{
   container = (
     <div>
       <Box>
-        <Paper >
+        <Paper>
           <Grid>
             <Grid>
               <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
@@ -318,11 +379,11 @@ const handleChange2 = (key,value)=>{
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled"
                         value={miData.mType.value}
-                        onChange={(e)=>handleChange1('mType',e.target.value)}
+                        onChange={(e) => handleChange1("mType", e.target.value)}
                       >
-                        <MenuItem value={10}>HDD</MenuItem>
-                        <MenuItem value={20}>Trencher</MenuItem>
-                        <MenuItem value={30}>Tractor</MenuItem>
+                        <MenuItem value={"MT00001"}>HDD</MenuItem>
+                        <MenuItem value={"MT00002"}>Trencher</MenuItem>
+                        <MenuItem value={"MT00003"}>Tractor</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>
@@ -330,20 +391,22 @@ const handleChange2 = (key,value)=>{
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
                       id="filled-basic"
-                      label="Machine No + Machine Make"
+                      label="OEM"
                       variant="filled"
-                      value={miData.mMakeNum.value}
-                        onChange={(e)=>handleChange1('mMakeNum',e.target.value)}
+                      value={miData.oem.value}
+                      onChange={(e) => handleChange1("oem", e.target.value)}
                     />
                   </Grid>
                   <Grid>
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
                       id="filled-basic"
-                      label="Machine Capacity"
+                      label="Machine Capacity(in tonnes)"
                       variant="filled"
-                      value={miData.mCap.value}
-                      onChange={(e)=>handleChange1('mCap',e.target.value)}
+                      value={miData.machineCapacity.value}
+                      onChange={(e) =>
+                        handleChange1("machineCapacity", e.target.value)
+                      }
                     />
                   </Grid>
                 </Grid>
@@ -353,13 +416,21 @@ const handleChange2 = (key,value)=>{
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
                       id="filled-basic"
-                      label="Serial No"
+                      label="Model No"
                       variant="filled"
-                      value={miData.serialNumber.value}
-                      onChange={(e)=>handleChange1('serialNum',e.target.value)}
+                      value={miData.modelNumber.value}
+                      onChange={(e) =>
+                        handleChange1("modelNumber", e.target.value)
+                      }
                     />
                   </Grid>
-                  <Grid style={{ width: "70%", marginLeft: "15%", padding: "1% 0% 1% 0%"}}>
+                  <Grid
+                    style={{
+                      width: "70%",
+                      marginLeft: "15%",
+                      padding: "1% 0% 1% 0%",
+                    }}
+                  >
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <Stack spacing={1}>
                         <DesktopDatePicker
@@ -383,8 +454,10 @@ const handleChange2 = (key,value)=>{
                       id="filled-basic"
                       label="Machine Available Sectors"
                       variant="filled"
-                      value={miData.mAvailableSectors.value}
-                      onChange={(e)=>handleChange1('mAvailableSectors',e.target.value)}
+                      value={miData.machineAvailableSectors.value}
+                      onChange={(e) =>
+                        handleChange1("machineAvailableSectors", e.target.value)
+                      }
                     />
                   </Grid>
                 </Grid>
@@ -393,7 +466,7 @@ const handleChange2 = (key,value)=>{
 
             <Grid className={classes.styling1}>
               <Grid className={classes.alignItems}>
-                <Grid style={{textAlign: "left"}}>
+                <Grid style={{ textAlign: "left" }}>
                   <h3>Machine Invoice*</h3>
                 </Grid>
                 <Grid>
@@ -425,9 +498,9 @@ const handleChange2 = (key,value)=>{
                         color="primary"
                         variant="contained"
                         disabled={docDetail.file1.value ? false : true}
-                          onClick={() => {
-                            uploadDocument(docDetail.file1.value, "file1");
-                          }}
+                        onClick={() => {
+                          uploadDocument(docDetail.file1.value, "file1");
+                        }}
                       >
                         Upload
                       </Button>
@@ -437,7 +510,7 @@ const handleChange2 = (key,value)=>{
               </Grid>
 
               <Grid className={classes.alignItems}>
-                <Grid style={{textAlign: "left"}}>
+                <Grid style={{ textAlign: "left" }}>
                   <h3>Machine Operational Manual*</h3>
                 </Grid>
                 <Grid>
@@ -469,9 +542,9 @@ const handleChange2 = (key,value)=>{
                         color="primary"
                         variant="contained"
                         disabled={docDetail.file2.value ? false : true}
-                          onClick={() => {
-                            uploadDocument(docDetail.file2.value, "file2");
-                          }}
+                        onClick={() => {
+                          uploadDocument(docDetail.file2.value, "file2");
+                        }}
                       >
                         Upload
                       </Button>
@@ -497,20 +570,16 @@ const handleChange2 = (key,value)=>{
                 <FormControlLabel value="2" control={<Radio />} label="No" />
               </RadioGroup>
             </FormControl>
-
           </Grid>
           {container2}
-          <Grid style={{textAlign: 'center', padding: '1% 0% 1% 0%'}}>
-                <Button  variant="contained">Continue</Button>
-                </Grid>
-          
+          <Grid style={{ textAlign: "center", padding: "1% 0% 1% 0%" }}>
+            <Button variant="contained" onClick={submitHandler}>
+              Continue
+            </Button>
+          </Grid>
         </Paper>
       </Box>
     </div>
   );
-  return (
-    <div>
-      {container}
-    </div>
-  );
+  return <div>{container}</div>;
 }
