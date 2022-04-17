@@ -1,0 +1,23 @@
+.gray{
+    background-color: #F2F2F2;
+    width: 100%;
+    text-align: start;
+    font-size: small;
+    padding-left: 0.5%;
+}
+.filter{
+    background-color: white;
+    margin-top: 2%;
+    height: 55vh;
+    width: 98%;
+    overflow-y:auto ;
+    overflow-x: hidden;
+    border: solid 1px;
+}
+.properties{
+    background-color: white;
+    margin-top: 2%;
+    border: solid 1px;
+    height: 30vh;
+    width: 98%;
+}
