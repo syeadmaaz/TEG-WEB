@@ -8,7 +8,7 @@ import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp
 import HumanResourceOnboard from '../HumanResourceOnboard/HumanResourceOnboard';
 import DoDisturbOnOutlinedIcon from '@mui/icons-material/DoDisturbOnOutlined';
 
-function HumanResouce() {
+function HumanResouce(props) {
 
   const [goToOnboarding, setGoToOnboarding] = useState(false);
   let container5 = null;
@@ -18,7 +18,7 @@ function HumanResouce() {
         <div style={{textAlign:'left'}}>
           <DoDisturbOnOutlinedIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(false)}/>
         </div>
-        <HumanResourceOnboard />
+        <HumanResourceOnboard resourceID={props.resourceID}/>
       </div>
     )
   }

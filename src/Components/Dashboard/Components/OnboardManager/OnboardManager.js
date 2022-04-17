@@ -55,7 +55,7 @@ const OnboardManager = (props) =>{
           <TabContext value={value}>
             
             <TabPanel value="1"><Machine resourceID={props.resourceID}/></TabPanel>
-            <TabPanel value="2"><HR /></TabPanel>
+            <TabPanel value="2"><HR resourceID={props.resourceID}/></TabPanel>
             <TabPanel value="3"><KYC /></TabPanel>
         
           </TabContext>

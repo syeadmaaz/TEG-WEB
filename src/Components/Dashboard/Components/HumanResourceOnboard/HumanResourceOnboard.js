@@ -20,33 +20,15 @@ import { FormControlLabel } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import DashboardContainer from "../DashboardContainer";
 import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
-import Cookies from "universal-cookie";
 
 import axios from "../../../../axios_tteg";
 
-const cookies = new Cookies();
-
 export default function HumanResourceOnboard(props) {
-
-
-
-  let cookie = [];
-  useEffect(() => {
-    setLoading(true);
-    if (cookies.get("userData")) {
-      setLoading(false);
-      cookie = cookies.get("userData");
-      console.log(cookie.resourceID);
-    } else {
-      setLoading(false);
-    }
-  });
-
-
   const fileTypes = ["PDF"];
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [message, setMessage] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
   const [disable, setDisable] = useState(true);
 
   const [domain, setDomain] = React.useState("");
@@ -124,7 +106,7 @@ export default function HumanResourceOnboard(props) {
     },
     relationship: {
       value: null,
-      valid: false, 
+      valid: false,
     },
     relationPhone: {
       value: null,
@@ -138,7 +120,6 @@ export default function HumanResourceOnboard(props) {
       value: null,
       valid: false,
     },
-
   });
 
   const [docDetail, setDocDetail] = useState({
@@ -148,60 +129,69 @@ export default function HumanResourceOnboard(props) {
       isUploaded: false,
       path: null,
     },
-  })
+  });
 
-
-
-  const submitHandler = ()=>{
-
-    let tempHR = {... hrData} 
-    let tempDoc = {... docDetail}
-
-    console.log(tempHR)
-    console.log(tempDoc)
+  const submitHandler = () => {
+    let tempHR = { ...hrData };
 
     let isValid = true;
-    Object.keys(tempHR).map(item=>{
-      isValid = isValid && tempHR[item].valid
+    Object.keys(tempHR).map((item) => {
+      isValid = isValid && tempHR[item].valid;
     });
 
-    if(isValid){
-      setLoading(true)
-      axios.post('/ ',{
-        // entityName:piData.entityName.value,
-        // entityTypeID:piData.entityTypeID.value,
-        // address:{
-        //   address:piData.address.value,
-        //   pinCode:piData.pinCode.value,
-        //   city:piData.city.value,
-        //   country:piData.country.value,
-        //   state:piData.state.value
-        // },
-        // aadharCardNo:piData.aadharCardNo.value,
-        // resourceID:props.resourceID
-      })
-      .then(response=>{
-        setLoading(false);
-        // console.log(response)
-        if(response.status === 201){
-          console.log("SUCESSFULL RESPONSE");
-          console.log(response.data)
+    if (isValid && docDetail.fitnessCertificate.isUploaded) {
+      console.log("SUBMIT API CALLING");
 
-        }
-        else{
-          setError(response.data.error);
-        }
-      })
-      .catch(e=>{
-        setLoading(false);
-        setError(e.response.data.error)
-      })
+      setLoading(true);
+      axios
+        .post("/mResourceHumanResource", {
+          resourceID: props.resourceID,
+          humanResourceInfo: {
+            name: tempHR.name.value,
+            dob: tempHR.dob.value,
+            aadharNumber: tempHR.aadharNumber.value,
+            address: tempHR.address.value,
+            country: tempHR.country.value,
+            state: tempHR.state.value,
+            district: tempHR.district.value,
+            city: tempHR.city.value,
+            pincode: tempHR.pin.value,
+            eduactionalQualification: tempHR.educationalQualification.value,
+            isMarried: tempHR.maritalStatus.value,
+            tenure: tempHR.tenure.value,
+            registrationID: tempHR.registrationID.value,
+            skills: tempHR.skills.value,
+            experience: tempHR.experience.value,
+            domainTypeID: tempHR.domainTypeID.value,
+            relationName: tempHR.relationName.value,
+            relationship: tempHR.relationship.value,
+            relationPhoneNumber: tempHR.relationPhone.value,
+            safetyPractice: tempHR.safePractice.value,
+            medicalFitness: tempHR.medicalFitness.value,
+            fitnessCertificatePath: docDetail.fitnessCertificate.path,
+          },
+        })
+        .then((response) => {
+          setLoading(false);
+          // console.log(response)
+          if (response.status === 200) {
+            console.log("SUCESSFULL RESPONSE");
+            console.log(response.data);
+            setMessage(response.data.message);
+            setDisableButton(true);
+          } else {
+            setMessage(response.data.error);
+          }
+        })
+        .catch((e) => {
+          setLoading(false);
+          setMessage(e.response.data.error);
+          console.log(e.response.data.error);
+        });
+    } else {
+      setMessage("**Please Fill The Data Properly**");
     }
-    else{
-      setError('*Please fill appropraite data')
-    }
-  }
-
+  };
 
   const inputHandler = (key, value) => {
     const tempHRData = { ...hrData };
@@ -215,7 +205,6 @@ export default function HumanResourceOnboard(props) {
     setHRData(tempHRData);
   };
 
-
   const uploadDocument = (file, key) => {
     // console.log(pdf.result);
     console.log(file);
@@ -223,7 +212,7 @@ export default function HumanResourceOnboard(props) {
     var formData = new FormData();
 
     formData.append("uploadedFile", file);
-    formData.append("resourceID", cookie.resourceID);
+    formData.append("resourceID", props.resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
 
     console.log(formData);
@@ -238,8 +227,10 @@ export default function HumanResourceOnboard(props) {
           console.log(response);
           let tempDocDetail = { ...docDetail };
           // console.log(tempDocDetail[key].isUploaded);
-          setDisable(true);
           // tempDocDetail[key].value = null;
+
+          setDisable(true);
+          setMessage(null);
           tempDocDetail[key].isUploaded = true;
           tempDocDetail[key].path = response.data.path;
           // console.log(tempDocDetail.path)
@@ -248,18 +239,17 @@ export default function HumanResourceOnboard(props) {
       })
       .catch((e) => {
         setLoading(false);
-        setError(e.response.error);
+        setMessage(e.response.error);
       });
   };
 
   const fileHandler = (file) => {
-    setDisable(false)
+    setDisable(false);
     let temp = { ...docDetail };
     temp.fitnessCertificate.value = file;
     temp.fitnessCertificate.isUploaded = false;
     setDocDetail(temp);
   };
-
 
   useEffect(() => {
     setLoading(true);
@@ -275,7 +265,6 @@ export default function HumanResourceOnboard(props) {
       })
       .catch((e) => console.log(e.response.data.error));
   }, []);
-
 
   const handleChangeDomain = (data) => {
     if (data.length > 0) {
@@ -302,23 +291,23 @@ export default function HumanResourceOnboard(props) {
     setDomainBaseSelected(data);
   };
 
-
   let container = null;
   if (loading || !domain || !domainBase) {
     container = (
-        <Box>
-          <Grid>
-            <CircularProgress />
-          </Grid>
-        </Box>
+      <Box>
+        <Grid>
+          <CircularProgress />
+        </Grid>
+      </Box>
     );
   } else {
     container = (
       <div>
         <Box>
-          <Paper elevation={8}
+          <Paper
+            elevation={8}
             // style={{ height: 635, margin:10, overflow:'auto'}}
-            >
+          >
             <Grid>
               <Grid>
                 <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
@@ -340,9 +329,7 @@ export default function HumanResourceOnboard(props) {
                           label="Name as in govt ID*"
                           variant="filled"
                           value={hrData.name.value}
-                          onChange={(e) =>
-                            inputHandler("name", e.target.value)
-                          }
+                          onChange={(e) => inputHandler("name", e.target.value)}
                         />
                       </Grid>
                       <Grid>
@@ -388,9 +375,7 @@ export default function HumanResourceOnboard(props) {
                           label="Pin Code*"
                           variant="filled"
                           value={hrData.pin.value}
-                          onChange={(e) =>
-                            inputHandler("pin", e.target.value)
-                          }
+                          onChange={(e) => inputHandler("pin", e.target.value)}
                         />
                       </Grid>
                       <Grid
@@ -403,10 +388,10 @@ export default function HumanResourceOnboard(props) {
                           <RadioGroup
                             row
                             aria-labelledby="demo-radio-buttons-group-label"
-                            // defaultValue="female"
+                            value={hrData.maritalStatus.value}
                             name="radio-buttons-group"
                             onChange={(event) =>
-                              inputHandler("maritalStatus",event.target.value)
+                              inputHandler("maritalStatus", event.target.value)
                             }
                           >
                             <FormControlLabel
@@ -442,7 +427,9 @@ export default function HumanResourceOnboard(props) {
                         label="Experience in Years and Months*"
                         variant="filled"
                         value={hrData.experience.value}
-                        onChange={(e) => inputHandler("experience", e.target.value)}
+                        onChange={(e) =>
+                          inputHandler("experience", e.target.value)
+                        }
                       />
                     </Grid>
                   </Grid>
@@ -495,9 +482,7 @@ export default function HumanResourceOnboard(props) {
                         label="State*"
                         variant="filled"
                         value={hrData.state.value}
-                        onChange={(e) =>
-                          inputHandler("state", e.target.value)
-                        }
+                        onChange={(e) => inputHandler("state", e.target.value)}
                       />
                     </Grid>
                     <Grid>
@@ -507,9 +492,7 @@ export default function HumanResourceOnboard(props) {
                         label="City*"
                         variant="filled"
                         value={hrData.city.value}
-                        onChange={(e) =>
-                          inputHandler("city", e.target.value)
-                        }
+                        onChange={(e) => inputHandler("city", e.target.value)}
                       />
                     </Grid>
                     <Grid>
@@ -525,13 +508,20 @@ export default function HumanResourceOnboard(props) {
                           id="demo-simple-select-filled"
                           value={hrData.educationalQualification.value}
                           onChange={(e) =>
-                            inputHandler("educationalQualification", e.target.value)
+                            inputHandler(
+                              "educationalQualification",
+                              e.target.value
+                            )
                           }
                         >
                           <MenuItem value={"Matric"}>Matric</MenuItem>
-                          <MenuItem value={"Intermediate"}>Intermediate</MenuItem>
+                          <MenuItem value={"Intermediate"}>
+                            Intermediate
+                          </MenuItem>
                           <MenuItem value={"Graduate"}>Graduate</MenuItem>
-                          <MenuItem value={"Post Graduate"}>Post Graduate & Above</MenuItem>
+                          <MenuItem value={"Post Graduate"}>
+                            Post Graduate & Above
+                          </MenuItem>
                           <MenuItem value={"None"}>None</MenuItem>
                         </Select>
                       </FormControl>
@@ -548,8 +538,9 @@ export default function HumanResourceOnboard(props) {
                           aria-labelledby="demo-radio-buttons-group-label"
                           // defaultValue="female"
                           name="radio-buttons-group"
+                          value={hrData.tenure.value}
                           onChange={(event) =>
-                            inputHandler("tenure",event.target.value)
+                            inputHandler("tenure", event.target.value)
                           }
                         >
                           <FormControlLabel
@@ -670,9 +661,7 @@ export default function HumanResourceOnboard(props) {
 
               <Grid className={classes.displaying}>
                 <Grid className={classes.style}>
-                  <Grid
-                    style={{ textAlign: "left", padding: "0% 0% 0% 15%" }}
-                  >
+                  <Grid style={{ textAlign: "left", padding: "0% 0% 0% 15%" }}>
                     <FormControl>
                       <FormLabel id="demo-radio-buttons-group-label">
                         <h3>
@@ -684,7 +673,10 @@ export default function HumanResourceOnboard(props) {
                         aria-labelledby="demo-radio-buttons-group-label"
                         // defaultValue="female"
                         name="radio-buttons-group"
-                        onChange={(event) => inputHandler("safePractice",event.target.value)}
+                        value={hrData.safePractice.value}
+                        onChange={(event) =>
+                          inputHandler("safePractice", event.target.value)
+                        }
                       >
                         <FormControlLabel
                           value="Yes"
@@ -702,9 +694,7 @@ export default function HumanResourceOnboard(props) {
                 </Grid>
 
                 <Grid className={classes.style}>
-                  <Grid
-                    style={{ textAlign: "left", padding: "0% 0% 0% 15%" }}
-                  >
+                  <Grid style={{ textAlign: "left", padding: "0% 0% 0% 15%" }}>
                     <FormControl>
                       <FormLabel id="demo-radio-buttons-group-label">
                         <h3>Medical Fitness*</h3>
@@ -713,8 +703,11 @@ export default function HumanResourceOnboard(props) {
                         row
                         aria-labelledby="demo-radio-buttons-group-label"
                         // defaultValue="female"
+                        value={hrData.medicalFitness.value}
                         name="radio-buttons-group"
-                        onChange={(event) => inputHandler("medicalFitness",event.target.value)}
+                        onChange={(event) =>
+                          inputHandler("medicalFitness", event.target.value)
+                        }
                       >
                         <FormControlLabel
                           value="Yes"
@@ -732,7 +725,7 @@ export default function HumanResourceOnboard(props) {
                 </Grid>
               </Grid>
 
-              <Grid style={{textAlign: "left", padding:"0% 0% 0% 7%"}}>
+              <Grid style={{ textAlign: "left", padding: "0% 0% 0% 7%" }}>
                 <Grid>
                   <h3 style={{ textAlign: "left", color: "grey" }}>
                     Fitness Certificate*
@@ -740,7 +733,7 @@ export default function HumanResourceOnboard(props) {
                 </Grid>
                 <Grid className={classes.styling1}>
                   <Grid>
-                    <Grid style={{ display: "flex"}}>
+                    <Grid style={{ display: "flex" }}>
                       <Grid style={{ width: "80%" }}>
                         <FileUploader
                           multiple={false}
@@ -750,7 +743,9 @@ export default function HumanResourceOnboard(props) {
                         />
                       </Grid>
                       <Grid className={classes.alignItems}>
-                        <Checkbox checked={docDetail.fitnessCertificate.isUploaded} />
+                        <Checkbox
+                          checked={docDetail.fitnessCertificate.isUploaded}
+                        />
                       </Grid>
                     </Grid>
                     <Grid style={{ display: "flex" }}>
@@ -771,7 +766,10 @@ export default function HumanResourceOnboard(props) {
                           variant="contained"
                           disabled={disable}
                           onClick={() => {
-                            uploadDocument(docDetail.fitnessCertificate.value, "fitnessCertificate");
+                            uploadDocument(
+                              docDetail.fitnessCertificate.value,
+                              "fitnessCertificate"
+                            );
                           }}
                         >
                           Upload
@@ -782,14 +780,19 @@ export default function HumanResourceOnboard(props) {
                 </Grid>
               </Grid>
             </Grid>
-
+            <p style={{fontSize: 16, fontWeight:"bold", color:"red"}}>
+              {message}
+            </p>
             <Grid style={{ textAlign: "center", padding: "3% 0% 3% 0%" }}>
-              <Button 
+              <Button
                 type="submit"
                 color="primary"
                 variant="contained"
+                disabled={disableButton}
                 onClick={submitHandler}
-              >Continue</Button>
+              >
+                Continue
+              </Button>
             </Grid>
           </Paper>
         </Box>

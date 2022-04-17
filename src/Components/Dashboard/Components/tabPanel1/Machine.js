@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
 import MachineOnBoard from '../MachineOnboard/MachineOnboard';
 import DoDisturbOnOutlinedIcon from '@mui/icons-material/DoDisturbOnOutlined';
+
 function Machine(props) {
   const [goToOnboarding, setGoToOnboarding] = useState(false);
   let container5 = null;
