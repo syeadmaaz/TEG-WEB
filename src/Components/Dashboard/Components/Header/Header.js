@@ -10,18 +10,22 @@ import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import classes from "./Header.module.css";
+import Cookies from "universal-cookie";
 
-const Header = ()=>{
-    const [screen, setScreen] = useState("Task-Manager");
+const cookies = new Cookies();
+
+const Header = (props)=>{
+    const [screen, setScreen] = useState(0);
     const [role, setRole] = useState("Planner");
     const name = "Rahul";
-    // console.log(screen);
+    console.log(screen);
 
     // const classes = useStyles();
 
     const handleChange = (event, newValue) => {
       console.log(newValue);
-        // setScreen(newValue);
+      props.getData(event.target.value);
+        setScreen(event.target.value);
     };
     let container = null;
     container = (
@@ -41,8 +45,8 @@ const Header = ()=>{
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{color: 'black'}}>
                             <FormControl id='specific'> 
                                 <Select onChange={handleChange} value={screen} size="small">
-                                    <MenuItem value={"Task-Manager"} onClick={() => setScreen("Task-Manager")} >Task Manager</MenuItem>
-                                    <MenuItem value={"Planning"} onClick={() => setScreen("Planning")}>Planning</MenuItem>
+                                    <MenuItem value={0} onClick={() => setScreen(0)} >Task Manager</MenuItem>
+                                    <MenuItem value={1} onClick={() => setScreen(1)}>Planning</MenuItem>
                                 </Select>
                             </FormControl>                            
                         </Typography>
@@ -61,7 +65,10 @@ const Header = ()=>{
                             aria-label="menu"
                             sx={{ mr: 2 }}
                         >
-                            <SettingsIcon className='menit'id='specific'/> 
+                            <SettingsIcon className='menit'id='specific' onClick = {()=>{
+                                    cookies.remove('userData', {path:"/"})
+                                    window.reload();
+                                }}/> 
                             <MenuIcon id='menubtn'/>
                         </IconButton>
                     </Toolbar>

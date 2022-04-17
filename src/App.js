@@ -19,6 +19,7 @@ import Main from "./Components/Dashboard/Components/Main.js";
 import Cookies from "universal-cookie";
 import DashboardContainer from "./Components/Dashboard/Components/DashboardContainer";
 import HumanResourceOnboard from "./Components/Dashboard/Components/HumanResourceOnboard/HumanResourceOnboard";
+import CaseContainer from "./Components/Maps/CaseContainer";
 
 const cookies = new Cookies();
 
@@ -56,7 +57,7 @@ function App() {
   return (
     <div className="App">
       {Landing}
-
+      {/* <CaseContainer/> */}
       {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
       {/* <Tabs/> */}
