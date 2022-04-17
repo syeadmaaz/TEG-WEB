@@ -20,6 +20,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import DashboardContainer from "../DashboardContainer";
 import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
 import axios from "../../../../axios_tteg";
+import { useAlert } from "react-alert";
+
 
 export default function MachineOnboard(props) {
   const fileTypes = ["PDF"];
@@ -186,9 +188,11 @@ export default function MachineOnboard(props) {
   const submitHandler = () => {
     let tempMI = { ...miData };
     let tempOI = { ...oiData };
+    let tempDocDetail = { ...docDetail };
 
     console.log(tempMI);
     console.log(tempOI);
+    console.log(ownerFound);
 
     // let isValid = true;
     // Object.keys(tempHR).map((item) => {
@@ -207,22 +211,25 @@ export default function MachineOnboard(props) {
         machineCapacityInTonnes: tempMI.machineCapacity.value,
         machineAvailabilitySectors: tempMI.machineAvailableSectors.value,
         purchaseDates: value,
-        resourceOwner: setOwnerFound ? true : false,
-        resourceOwnerDetails: {
-          name: tempOI.idName,
-          email: tempOI.idEmail,
-          bankName: tempOI.bankName,
-          ifscCode: tempOI.ifscCode,
-          Address: tempOI.idAddress,
-          mobile: tempOI.mobNum,
-          accountNumber: tempOI.accNum,
-          branchAddress: tempOI.branchAddress,
+        resourceOwner: ownerFound == 1 ? true : false,
+        machineOwnerDetails: {
+          name: tempOI.idName.value,
+          email: tempOI.idEmail.value,
+          bankName: tempOI.bankName.value,
+          ifscCode: tempOI.ifscCode.value,
+          Address: tempOI.idAddress.value,
+          mobile: tempOI.mobNum.value,
+          accountNumber: tempOI.accNum.value,
+          branchAddress: tempOI.branchAddress.value,
         },
+        machineInvoicePath: tempDocDetail.file1.path,
+        machineOperationalManualPath: tempDocDetail.file2.path
       })
       .then((response) => {
         setLoading(false);
-        // console.log(response)
-        if (response.status === 200) {
+        console.log(response);
+        if (response.status == 200) {
+          alert("Machine Details Entered Successfully");
           console.log("SUCESSFULL RESPONSE");
           console.log(response.data);
         } else {
@@ -581,5 +588,10 @@ export default function MachineOnboard(props) {
       </Box>
     </div>
   );
-  return <div>{container}</div>;
+  return (
+    <div>
+      {container}
+      <p>{error}</p>
+    </div>
+  );
 }
