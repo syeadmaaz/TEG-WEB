@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* {Landing} */}
+      {Landing}
       {/* <CaseContainer/> */}
       {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
@@ -73,7 +73,7 @@ function App() {
       {/* <SubType/> */}
       {/* <PreRegistration/> */}
       {/* <LegalInfoFree/> */}
-      <Registration/>
+      {/* <Registration/> */}
       {/* <Main/> */}
       {/* <HumanResourceOnboard/> */}
     </div>
