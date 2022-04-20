@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SidePanel from "../Tabs/SidePanel";
 import Screen from "./Screen";
 
+
 export default function Registration(props) {
   console.log(props);
   const [menu, setMenu] = useState(1);

@@ -173,7 +173,7 @@ export default function CompanyAssociation(props) {
   container = (
     <div>
       <Grid>
-        <h1 style={{ textAlign: "center" }}>Association with Company</h1>
+        <p style={{ textAlign: "center", fontWeight:'bold', fontSize:24 }}>Association with Company</p>
         <hr style={{ width: "50%" }}></hr>
       </Grid>
       <Grid style={{ display: "block" }}>

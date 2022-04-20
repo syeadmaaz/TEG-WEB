@@ -23,6 +23,7 @@ import {
 
 import Register from "../Register/Registration"; 
 import OTPPage from "./OTPPage";
+import Logo from "../../assets/images/logo.png";
 
 const PreRegCompleted = (props)=>{
     const [moveToRegistration,setMoveToRegistration] = useState(false);
@@ -39,7 +40,9 @@ const PreRegCompleted = (props)=>{
         container = (
             <div>
                 <Box style={{ padding: '2%', width:'85%', margin:'auto' }}>
-                    <Paper elevation={24} style={{minHeight:600 }}>
+                    
+                    <Paper elevation={24} style={{minHeight:600, padding:10 }}>
+                    <img src = {Logo} style = {{maxWidth:'100%'}}/>
                         <Grid className={classes.style}>
                             <Grid style={{textAlign :'center', alignItems:'center', padding:'10%'}}>
                                 <h2 style={{background:'aliceblue',padding:'8%',borderRadius:20}}>{props.message}</h2>

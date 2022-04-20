@@ -23,6 +23,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "../../axios_tteg";
 import PreRegCompleted from "./PreRegCompleted";
+import Logo from "../../assets/images/logo.png";
 
 const PreRegistrationPage = (props) => {
   const [preRegData, setPreRegData] = useState({
@@ -228,20 +229,22 @@ const PreRegistrationPage = (props) => {
   if (loading || !domain || !subscriberType || !domainBase) {
     container = (
       <Box style={{ padding: "2%", width: "85%", margin: "auto" }}>
-        <Paper elevation={24} style={{ minHeight: 620 }}>
+        <Paper elevation={24} style={{ padding: 20 }}>
           <Grid className={classes.style}>
             <Grid>
-              <h1
+              <p
                 style={{
                   textAlign: "center",
                   padding: "20px 10px",
                   justifyContent: "center",
                   margin: "0px auto",
+                  fontSize:24,
+                  fontWeight:'bold'
                 }}
               >
                 Register
                 <hr style={{ width: "50%" }} />
-              </h1>
+              </p>
             </Grid>
             <Grid
               style={{
@@ -269,21 +272,24 @@ const PreRegistrationPage = (props) => {
   } else {
     container = (
       <Box style={{ padding: "2%", width: "85%", margin: "auto" }}>
-        <Paper elevation={24} style={{ minHeight: 600 }}>
+        <Paper elevation={24} style={{ padding:20 }}>
           <Grid>
+            <img src = {Logo} style = {{maxWidth:'100%'}}/>
             <Grid className={classes.style}>
               <Grid>
-                <h1
+                <p
                   style={{
                     textAlign: "center",
                     padding: "20px 10px",
                     justifyContent: "center",
                     margin: "0px auto",
+                    fontSize:24,
+                    fontWeight:'bold'
                   }}
                 >
                   Register
                   <hr style={{ width: "50%" }} />
-                </h1>
+                </p>
               </Grid>
               <p style={{ padding: "0 7.5%", color: "red", fontSize: "small" }}>
                 Fields marked with * are compulsary
@@ -318,10 +324,11 @@ const PreRegistrationPage = (props) => {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid
-                style={{ textAlign: "center", display: "flex", width: "100%" }}
+              <div
+                className={classes.TextFields}
+                style={{ textAlign: "center", width: "100%" }}
               >
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+                <Grid  style={{ width: "100%", textAlign: "center",display:'block' }}>
                   <Grid>
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
@@ -367,7 +374,7 @@ const PreRegistrationPage = (props) => {
                   </Grid>
                 </Grid>
 
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+                <Grid style={{ width: "100%", textAlign: "center" }}>
                   <Grid>
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
@@ -424,7 +431,7 @@ const PreRegistrationPage = (props) => {
                     />
                   </Grid>
                 </Grid>
-              </Grid>
+              </div>
 
               <Grid>
                 <FormGroup style={{ padding: "0 8%" }}>

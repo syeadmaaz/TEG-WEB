@@ -14,6 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import Logo from "../../assets/images/logo.png";
 
 export default function SubType(props) {
   const [dense, setDense] = React.useState(false);
@@ -27,11 +28,12 @@ export default function SubType(props) {
 
   return (
     <div>
-      <Box style={{ padding: "3% 2%", margin: "auto", maxWidth: 1020 }}>
+      <Box style={{ padding: "2%", margin: "auto", maxWidth: 1020 }}>
         <Paper
           elevation={0}
-          style={{ height: 620, margin: 10, overflow: "auto" }}
+          style={{ margin: 10, overflow: "auto" }}
         >
+          <img src = {Logo} style = {{maxWidth:'100%'}}/>
           <Grid className={classes.style}>
             <Grid
               className={classes.alignment}
@@ -45,7 +47,7 @@ export default function SubType(props) {
                       color="text.secondary"
                       gutterBottom
                     >
-                      <h1>Free</h1>
+                      <p style = {{margin:0, fontWeight:'bold', fontSize:20}}>Free</p>
                     </Typography>
                     <div
                       style={{
@@ -57,7 +59,7 @@ export default function SubType(props) {
                       <CurrencyRupeeIcon
                         style={{ fontSize: 42, fontWeight: "bolder" }}
                       />
-                      <h1 style={{ fontSize: 42, fontWeight: "bolder" }}>0</h1>
+                      <p style={{ fontSize: 42, fontWeight: "bolder" }}>0</p>
                     </div>
 
                     <Typography style={{ padding: "5% 0" }}>
@@ -143,7 +145,7 @@ export default function SubType(props) {
                       color="text.secondary"
                       gutterBottom
                     >
-                      <h1>Basic</h1>
+                      <p style = {{margin:0, fontWeight:'bold', fontSize:20}}>Basic</p>
                     </Typography>
                     <div
                       style={{
@@ -155,9 +157,9 @@ export default function SubType(props) {
                       <CurrencyRupeeIcon
                         style={{ fontSize: 42, fontWeight: "bolder" }}
                       />
-                      <h1 style={{ fontSize: 42, fontWeight: "bolder" }}>
+                      <p style={{ fontSize: 42, fontWeight: "bolder" }}>
                         1000
-                      </h1>
+                      </p>
                     </div>
                     <Typography style={{ padding: "5% 0" }}>
                       <Grid style={{ padding: 0 }}>
@@ -231,7 +233,7 @@ export default function SubType(props) {
                       color="text.secondary"
                       gutterBottom
                     >
-                      <h1>Premium</h1>
+                      <p style = {{margin:0, fontWeight:'bold', fontSize:20}}>Premium</p>
                     </Typography>
                     <div
                       style={{
@@ -243,9 +245,9 @@ export default function SubType(props) {
                       <CurrencyRupeeIcon
                         style={{ fontSize: 42, fontWeight: "bolder" }}
                       />
-                      <h1 style={{ fontSize: 42, fontWeight: "bolder" }}>
+                      <p style={{ fontSize: 42, fontWeight: "bolder" }}>
                         5000
-                      </h1>
+                      </p>
                     </div>
                     <Typography style={{ padding: "5% 0" }}>
                       <Grid>
@@ -310,13 +312,13 @@ export default function SubType(props) {
           </Grid>
           <Grid
             style={{
-              padding: "4% 2%",
+              padding: "2%",
               display: "flex",
               justifyContent: "space-between",
             }}
           >
             <div>
-              <Button variant="text" onClick={() => props.getData(1)}>
+              <Button variant="text" onClick={() => props.getData({subscriberCategoryID:null,pageNo:1})}>
                 Back
               </Button>
             </div>

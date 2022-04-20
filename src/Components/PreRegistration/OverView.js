@@ -19,6 +19,7 @@ import {
     CircularProgress,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/images/logo.png"
 
 const OverView = (props)=>{
     let navigate = useNavigate();
@@ -26,9 +27,10 @@ const OverView = (props)=>{
     return(
         <div>
             <Box style={{ padding: '2%', width:'85%', margin:'auto' }}>
-                <Paper elevation={24} style={{height:620 }}>
+                <Paper elevation={24} style={{padding:25 }}>
+                    <img src = {Logo} style = {{maxWidth:'100%'}}/>
                     <Grid>
-                        <Grid style={{textAlign :'center', alignItems:'center', padding:'3%'}}>
+                        <Grid style={{textAlign :'center', alignItems:'center'}}>
                             <h2 >Thanks for your interest in T-TEG platform</h2>
                             <hr style={{ width: "50%" }} />
                             <div style={{background:'aliceblue',padding:'3%',margin:'3%',borderRadius:5,textAlign:'justify'}}>

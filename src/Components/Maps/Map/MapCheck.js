@@ -165,6 +165,7 @@ export default function MapCheck2(props) {
   console.log(inputResourceID)
 
   const getSavedMap = ()=>{
+    console.log(props);
     let tempInputLayer = []
     axios.get('/getMapAuditFinal',{
       params:{

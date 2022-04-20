@@ -4,6 +4,7 @@ import { Box, Tab, Paper, Grid } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Personal from "../Register/Personal/Personal";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Logo from "../../assets/images/logo.png"
 
 function SidePanel(props) {
   const [activeState, setActive] = useState(null);
@@ -27,6 +28,7 @@ function SidePanel(props) {
         elevation={24}
         className={classes.sidebarContainer}
       >
+        <img src = {Logo} style={{maxWidth:'100%'}}/>
         <TabContext value={activeState}>
           <TabList
             orientation="vertical"

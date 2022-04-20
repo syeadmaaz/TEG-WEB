@@ -20,8 +20,11 @@ import { FormControlLabel } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import DashboardContainer from "../DashboardContainer";
 import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
+import Cookies from "universal-cookie"
 
 import axios from "../../../../axios_tteg";
+
+const cookies = new Cookies();
 
 export default function HumanResourceOnboard(props) {
   const fileTypes = ["PDF"];
@@ -145,7 +148,7 @@ export default function HumanResourceOnboard(props) {
       setLoading(true);
       axios
         .post("/mResourceHumanResource", {
-          resourceID: props.resourceID,
+          resourceID: cookies.get('userData').resourceID,
           humanResourceInfo: {
             name: tempHR.name.value,
             dob: tempHR.dob.value,
@@ -179,6 +182,8 @@ export default function HumanResourceOnboard(props) {
             console.log(response.data);
             setMessage(response.data.message);
             setDisableButton(true);
+            alert('Registered Succefully');
+            props.getData(false);
           } else {
             setMessage(response.data.error);
           }
@@ -212,7 +217,7 @@ export default function HumanResourceOnboard(props) {
     var formData = new FormData();
 
     formData.append("uploadedFile", file);
-    formData.append("resourceID", props.resourceID);
+    formData.append("resourceID", cookies.get('userData').resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
 
     console.log(formData);
@@ -309,16 +314,11 @@ export default function HumanResourceOnboard(props) {
             // style={{ height: 635, margin:10, overflow:'auto'}}
           >
             <Grid>
-              <Grid>
-                <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
-                  Human Resource Info
-                </h1>
-              </Grid>
 
               <Grid>
                 <Grid
                   className={classes.displaying}
-                  style={{ textAlign: "center", width: "100%" }}
+                  style={{ textAlign: "center", width: "100%", padding:'20px 10px' }}
                 >
                   <Grid className={classes.style}>
                     <Grid>

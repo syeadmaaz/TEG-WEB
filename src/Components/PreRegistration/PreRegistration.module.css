@@ -39,6 +39,10 @@
     color: blueviolet;
     background-color: blueviolet;
   }
+
+  .TextFields{
+    display: block;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -81,6 +85,10 @@
     width: 60%;
     color: blueviolet;
     background-color: blueviolet;
+  }
+
+  .TextFields{
+    display: block;
   }
 }
 
@@ -126,6 +134,10 @@
     color: blueviolet;
     background-color: blueviolet;
   }
+
+  .TextFields{
+    display: flex;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -170,6 +182,10 @@
     color: blueviolet;
     background-color: blueviolet;
   }
+
+  .TextFields{
+    display: flex;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -212,6 +228,10 @@
     width: 50%;
     color: blueviolet;
     background-color: blueviolet;
+  }
+
+  .TextFields{
+    display: flex;
   }
 }
 /* Changes in this file added button colour and background violet */

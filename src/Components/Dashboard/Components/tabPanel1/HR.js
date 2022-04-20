@@ -18,7 +18,7 @@ function HumanResouce(props) {
         <div style={{textAlign:'left'}}>
           <DoDisturbOnOutlinedIcon style = {{fontSize:34, color:'teal'}} onClick = {()=>setGoToOnboarding(false)}/>
         </div>
-        <HumanResourceOnboard resourceID={props.resourceID}/>
+        <HumanResourceOnboard resourceID={props.resourceID} getData = {()=>setGoToOnboarding(false)}/>
       </div>
     )
   }

@@ -21,6 +21,10 @@ import DashboardContainer from "../DashboardContainer";
 import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
 import axios from "../../../../axios_tteg";
 import { useAlert } from "react-alert";
+import Cookies from "universal-cookie";
+import { parseWithOptions } from "date-fns/fp";
+
+const cookies = new Cookies();
 
 
 export default function MachineOnboard(props) {
@@ -58,7 +62,7 @@ export default function MachineOnboard(props) {
     },
   });
 
-  const [machineType, setMachineType] = useState(null);
+  const [machineType, setMachineType] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -158,7 +162,7 @@ export default function MachineOnboard(props) {
     var formData = new FormData();
 
     formData.append("uploadedFile", file);
-    formData.append("resourceID", props.resourceID);
+    formData.append("resourceID", cookies.get('userData').resourceID);
     formData.append("docTypeID", docDetail[key].docTypeID);
 
     console.log(formData);
@@ -204,7 +208,7 @@ export default function MachineOnboard(props) {
     setLoading(true);
     axios
       .post("/machineOnboarding", {
-        resourceID: props.resourceID,
+        resourceID: cookies.get('userData').resourceID,
         machineTypeID: tempMI.mType.value,
         modelNumber: tempMI.modelNumber.value,
         OEM: tempMI.oem.value,
@@ -232,6 +236,7 @@ export default function MachineOnboard(props) {
           alert("Machine Details Entered Successfully");
           console.log("SUCESSFULL RESPONSE");
           console.log(response.data);
+          props.getData(false);
         } else {
           setError(response.data.error);
         }
@@ -362,16 +367,11 @@ export default function MachineOnboard(props) {
       <Box>
         <Paper>
           <Grid>
-            <Grid>
-              <h1 style={{ textAlign: "center", padding: "2% 0% 0% 0%" }}>
-                Machine Info
-              </h1>
-            </Grid>
 
             <Grid>
               <Grid
                 className={classes.displaying}
-                style={{ textAlign: "center", width: "100%" }}
+                style={{ textAlign: "center", width: "100%", padding :'20px' }}
               >
                 <Grid className={classes.style}>
                   <Grid>
@@ -388,9 +388,14 @@ export default function MachineOnboard(props) {
                         value={miData.mType.value}
                         onChange={(e) => handleChange1("mType", e.target.value)}
                       >
-                        <MenuItem value={"MT00001"}>HDD</MenuItem>
+                        {/* <MenuItem value={"MT00001"}>HDD</MenuItem>
                         <MenuItem value={"MT00002"}>Trencher</MenuItem>
-                        <MenuItem value={"MT00003"}>Tractor</MenuItem>
+                        <MenuItem value={"MT00003"}>Tractor</MenuItem> */}
+                        {machineType.map(item=>{
+                          return(
+                            <MenuItem value={item.machineTypeID} >{item.machineTypeName}</MenuItem>
+                          )
+                        })}
                       </Select>
                     </FormControl>
                   </Grid>

@@ -139,17 +139,19 @@ export default function Personal(props) {
         <Paper elevation={24} style={{ height:620,margin:10, overflow:'auto'}}>
           <Grid className={classes.style}>
             <Grid>
-              <h1
+              <p
                 style={{
                   textAlign: "center",
                   padding: "20px 10px",
                   justifyContent: "center",
-                  margin:'0px auto'
+                  margin:'0px auto',
+                  fontSize:24,
+                  fontWeight:'bold'
                 }}
               >
                 Personal Information
                 <hr style={{ width: "50%" }} />
-              </h1>
+              </p>
             </Grid>
             <Grid>
               <CircularProgress/>
@@ -172,7 +174,7 @@ export default function Personal(props) {
 
             <Grid className={classes.style}>
               <Grid>
-                <h1
+                <p
                   style={{
                     textAlign: "center",
                     padding: "20px 10px",
@@ -182,7 +184,7 @@ export default function Personal(props) {
                 >
                   Personal Information
                   <hr style={{ width: "50%" }} />
-                </h1>
+                </p>
               </Grid>
               <p style={{padding: '0 7.5%',color: 'red',fontSize: 'small'}}>Fields marked with * are compulsary</p>
               <Grid
