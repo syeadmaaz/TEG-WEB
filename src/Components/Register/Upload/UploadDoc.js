@@ -260,17 +260,19 @@ export default function App(props) {
           style={{ height: 620, margin: 10, overflow: "auto" }}
         >
           <Grid>
-            <h1
+            <p
               style={{
                 textAlign: "center",
                 padding: "20px 10px",
                 justifyContent: "center",
                 margin: "0px auto",
+                fontWeight:'bold',
+                fontSize:24
               }}
             >
               Upload Documents
               <hr style={{ width: "50%" }} />
-            </h1>
+            </p>
           </Grid>
 
           {/* <input type="file" name="file" onChange={(e) => onChangeHandler(e)} /> */}

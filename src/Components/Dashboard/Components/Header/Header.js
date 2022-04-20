@@ -40,7 +40,7 @@ const Header = (props)=>{
                             aria-label="menu"
                             sx={{ mr: 2 }}
                         >
-                            <img src={logo} alt="Logo" className={classes.Logo}/>
+                            <img src={logo} alt="Logo" className={classes.Logo} onClick = {()=>window.location.reload(true)}/>
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{color: 'black'}}>
                             <FormControl id='specific'> 

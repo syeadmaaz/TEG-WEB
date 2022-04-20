@@ -32,9 +32,9 @@ const LegalInfoFree = (props)=>{
     return(
         <div>
             <Box style={{ padding: '2%', width:'85%', margin:'auto' }}>
-                <Paper elevation={24} style={{height:620 }}>
+                <Paper elevation={24} style={{padding:20 }}>
                     <Grid>
-                        <Grid style={{textAlign :'center', alignItems:'center', padding:'3%'}}>
+                        <Grid style={{textAlign :'center', alignItems:'center', padding:20}}>
                             <h2 >Legal Information</h2>
                             <hr style={{ width: "50%" }} />
                             <div style={{background:'aliceblue',padding:'2%',margin:20,borderRadius:5,textAlign:'justify'}}>

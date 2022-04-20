@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./LoginPage.module.css";
 import LoginPic from "../../assets/images/LoginPic.jpg";
+import Logo from "../../assets/images/logo.png";
 import {
   Grid,
   Paper,
@@ -58,8 +59,17 @@ const LoginPage = (props) => {
       });
   };
 
-  return (container = (
-    <div className={classes.stylePage}>
+  if(loading){
+    container = (
+      <div style = {{marginTop:'25%'}}>
+        <CircularProgress/>
+      </div>
+      
+    )
+  }
+  else{
+    container = (
+      <div >
       {/* <div className={classes.left}>
                 <img
                     className={classes.image}
@@ -70,82 +80,84 @@ const LoginPage = (props) => {
       {/* <div className={classes.left}> */}
       <Paper
         elevation={24}
-        style={{ borderRadius: "20px" }}
-        className={classes.paperStyle}
+        style={{ margin:'4% 5%'}}
+        // className={classes.paperStyle}
       >
-        <div className={classes.pic} style={{ width: "50%", height: "100%" }}>
-          <img className={classes.image} src={LoginPic}></img>
+        {/* Row 1 */}
+        <div>
+          <img  src = {Logo} style= {{padding:'10px 0', maxWidth:'100%', minWidth:195}}/>
         </div>
-
-        <div className={classes.right} style={{ width: "35%", height: "100%" }}>
-          <h1>Sign In</h1>
-
-          <TextField
-            className={classes.textSyle}
-            style={{ marginTop: "2%" }}
-            label="ResourceID"
-            placeholder="Enter Your ResourceID"
-            variant="outlined"
-            // fullWidth
-            onChange={(e) => setResourceID(e.target.value)}
-          />
-
-          {/* <TextField
-                    className={classes.textSyle}
-                    style={{marginTop:"5%"}}
-                    label="Password"
-                    placeholder="Enter Your Password"
-                    variant="outlined"
-                    // fullWidth
-                    // onChange={(event) => textFieldHandler(event.target.value, 1)}
-                /> */}
-          <p style={{ marginLeft: "7%" }} align="left">
-            <Checkbox />
-            Remember Me
-          </p>
-          <p style={{color: "red"}}>{error}</p>
-          <Button
-            className={classes.Button}
-            style={{ borderRadius: "18px" }}
-            type="submit"
-            color="primary"
-            variant="contained"
-            onClick={() => submitHandler()}
-          >
-            Sign In
-            <LoginIcon style={{ marginLeft: "2%", borderRadius: "20px" }} />
-          </Button>
-
-          <Typography marginTop="2%">
-            <Link
-              style={{ fontSize: "13px", fontWeight: "bold", color: "#648ACD" }}
-              // onClick={() => goToForgotPassword()}
+        
+        {/* <h3>Login</h3> */}
+        {/* Row 2 */}
+        <div className={classes.stylePage}>
+          {/* colimn 1 */}
+          <div className = {classes.imgContainer}>
+            {/* <img className = {classes.image} src = {Logo}/> */}
+            <img className = {classes.image} src = {LoginPic}/>
+          </div>
+          <hr></hr>
+          {/* Column 2 */}
+          <div className = {classes.imgContainer}>
+            <TextField 
+              style = {{maxWidth:'100%', minWidth:255}}
+              label="ResourceID"
+              placeholder="Enter Your ResourceID"
+              variant="outlined"
+              // fullWidth
+              onChange={(e) => setResourceID(e.target.value)}
+            />
+            <p>
+              <Checkbox />
+              Remember Me
+            </p>
+            <p style={{color: "red", margin:5}}>{error}</p>
+            <Button
+              style = {{width:225, backgroundColor:'green', margin:10}}
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => submitHandler()}
             >
-              Forgot Password ?
-            </Link>
-          </Typography>
+              Sign In
+              <LoginIcon  />
+            </Button>
 
-          <hr style={{ marginTop: "6%", width: "70%" }} />
+            <Typography >
+              <Link
+                style={{cursor:"pointer"}}
+                // onClick={() => goToForgotPassword()}
+              >
+                Forgot Password ?
+              </Link>
+            </Typography>
 
-          <Button
-            className={classes.Button}
-            style={{
-              marginTop: "5%",
-              borderRadius: "18px",
-              background: "green",
-            }}
-            type="submit"
-            color="primary"
-            variant="contained"
-            onClick={() => moveToRegisterHandler()}
-          >
-            Create Account
-          </Button>
+            <hr style={{borderTop:'2px dotted gray', margin:'10px 20px'}}  />
+
+            <Button
+              style = {{maxWidth:'100%', minWidth:255, margin:10}}
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => moveToRegisterHandler()}
+            >
+              Create Account
+            </Button>
+          </div>
         </div>
+
+        
       </Paper>
       {/* </div> */}
     </div>
-  ));
+    )
+  }
+
+  return (
+    <div>
+      {container}
+    </div>
+  );
 };
 
 export default LoginPage;

@@ -20,6 +20,7 @@ import Cookies from "universal-cookie";
 import DashboardContainer from "./Components/Dashboard/Components/DashboardContainer";
 import HumanResourceOnboard from "./Components/Dashboard/Components/HumanResourceOnboard/HumanResourceOnboard";
 import CaseContainer from "./Components/Maps/CaseContainer";
+import PreRegCompleted from "./Components/PreRegistration/PreRegCompleted";
 
 const cookies = new Cookies();
 
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <div className="App">
-      {Landing}
+      {/* {Landing} */}
       {/* <CaseContainer/> */}
       {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
@@ -72,7 +73,7 @@ function App() {
       {/* <SubType/> */}
       {/* <PreRegistration/> */}
       {/* <LegalInfoFree/> */}
-      {/* <Registration/> */}
+      <Registration/>
       {/* <Main/> */}
       {/* <HumanResourceOnboard/> */}
     </div>

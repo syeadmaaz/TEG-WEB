@@ -1,16 +1,18 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .stylePage{
-        /* display: flex; */
-        margin-top: 10%;
-        height: 90vh;
-    }   
+        display: block;
+        padding: 2% 5% 5% 5%;
+    } 
+    
+    .imgContainer{
+        width: 100%;
+        margin: 10;
+    }
 
     .image{
-        margin-top: 35%;
-        margin-left: 0%;
-        width: 0%;
-        height: 0%;
+        width: 85%;
+        padding: 20px;
     }
 
     .right{
@@ -43,16 +45,18 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .stylePage{
-        /* display: flex; */
-        margin-top: 10%;
-        height: 90vh;
-    }   
+        display: block;
+        padding: 2% 5% 5% 5%;
+    }  
+    
+    .imgContainer{
+        width: 100%;
+        margin: 10;
+    }
 
     .image{
-        margin-top: 35%;
-        margin-left: 0%;
-        width: 0%;
-        height: 0%;
+        width: 85%;
+        padding: 20px;
     }
 
     .right{
@@ -84,16 +88,18 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .stylePage{
-        /* display: flex; */
-        margin-top: 2%;
-        height: 90vh;
-    }   
+        display: flex;
+        padding: 2% 5% 5% 5%;
+    }  
+    
+    .imgContainer{
+        width: 100%;
+        margin: 10;
+    }
 
     .image{
-        margin-top: 40%;
-        margin-left: 10%;
-        width: 80%;
-        height: 40%;
+        width: 85%;
+        padding: 20px;
     }
 
     .right{
@@ -126,16 +132,18 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .stylePage{
-        /* display: flex; */
-        margin-top: 2%;
-        height: 90vh;
+        display: flex;
+        padding: 2% 5% 5% 5%;
     }   
 
+    .imgContainer{
+        width: 50%;
+        margin: 10;
+    }
+
     .image{
-        margin-top: 23%;
-        margin-left: 1%;
-        width: 80%;
-        height: 50%;
+        width: 85%;
+        padding: 20px;
     }
 
     .right{
@@ -169,16 +177,18 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .stylePage{
-        /* display: flex; */
-        margin-top: 2%;
-        height: 90vh;
-    }    
+        display: flex;
+        padding: 2% 5% 5% 5%;
+    }
+    
+    .imgContainer{
+        width: 50%;
+        margin: 10;
+    }
 
     .image{
-        margin-top: 15%;
-        margin-left: 1%;
-        width: 80%;
-        height: 60%;
+        width: 85%;
+        padding: 20px;
     }
 
     .right{
