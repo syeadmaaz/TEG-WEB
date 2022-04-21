@@ -26,7 +26,7 @@ import axios from "../../../../axios_tteg";
 
 const cookies = new Cookies();
 
-export default function HumanResourceOnboard(props) {
+export default function ParticularHumanResource(props) {
   const fileTypes = ["PDF"];
 
   const [loading, setLoading] = useState(false);
@@ -40,87 +40,87 @@ export default function HumanResourceOnboard(props) {
 
   const [hrData, setHRData] = useState({
     name: {
-      value: null,
-      valid: false,
+      value: props.particularHRDetails.humanResourceInfo.name,
+      valid: true,
     },
     dob: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.dob,
       valid: false,
     },
     aadharNumber: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.aadharNumber,
       valid: false,
     },
     address: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.address,
       valid: false,
     },
     country: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.country,
       valid: false,
     },
     state: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.state,
       valid: false,
     },
     district: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.district,
       valid: false,
     },
     city: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.city,
       valid: false,
     },
     pin: {
-      value: null,
-      valid: false,
+      value: props.particularHRDetails.humanResourceInfo.pincode,
+      valid: true,
     },
     educationalQualification: {
-      value: 0,
+      value: props.particularHRDetails.humanResourceInfo.eduactionalQualification,
       valid: false,
     },
     maritalStatus: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.isMarried,
       valid: false,
     },
     tenure: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.tenure,
       valid: false,
     },
     registrationID: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.registrationID,
       valid: false,
     },
     skills: {
-      value: 0,
+      value: props.particularHRDetails.humanResourceInfo.skills,
       valid: false,
     },
     experience: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.experience,
       valid: false,
     },
     domainTypeID: {
-      value: 0,
+      value: [props.particularHRDetails.humanResourceInfo.domainTypeID],
       valid: false,
     },
     relationName: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.relationName,
       valid: false,
     },
     relationship: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.relationship,
       valid: false,
     },
     relationPhone: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.relationPhoneNumber,
       valid: false,
     },
     safePractice: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.safetyPractice,
       valid: false,
     },
     medicalFitness: {
-      value: null,
+      value: props.particularHRDetails.humanResourceInfo.medicalFitness,
       valid: false,
     },
   });
@@ -257,6 +257,8 @@ export default function HumanResourceOnboard(props) {
   };
 
   useEffect(() => {
+      console.log(props)
+    
     setLoading(true);
     axios
       .get("/registerPIUtility1", {})
@@ -267,6 +269,32 @@ export default function HumanResourceOnboard(props) {
         setDomainBase(response.data.domainBase);
         // setTotalSubscriberType(response.data.subscriberType);
         // handleSubscriberType(response.data.subscriberType);
+        let concatData = '';
+        // let ch = [];
+        response.data.domain.map((item) => {
+            if (item.domainID === props.particularHRDetails.humanResourceInfo.domainTypeID) {
+              concatData = item.domainCode
+            }
+        })
+
+        let ch = concatData.split("");
+        setDomainBaseSelected(ch)
+
+
+        // domainBase.map((item) => {
+            
+        //     data.map((innerItem) => {
+        //       if (item.domainBaseID == innerItem) concatData += item.domainBaseID;
+        //     });
+        //   });
+        //   response.data.domain.map((item) => {
+        //     if (item.domainCode === concatData) {
+        //       let tempHRData = { ...hrData };
+        //       tempHRData["domainTypeID"].value = item.domainID;
+        //       tempHRData["domainTypeID"].valid = true;
+        //       setHRData(tempHRData);
+        //     }
+        //   });
       })
       .catch((e) => console.log(e.response.data.error));
   }, []);
@@ -791,7 +819,7 @@ export default function HumanResourceOnboard(props) {
                 disabled={disableButton}
                 onClick={submitHandler}
               >
-                Continue
+                Update
               </Button>
             </Grid>
           </Paper>
