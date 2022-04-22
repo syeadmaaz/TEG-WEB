@@ -58,7 +58,8 @@ const Screen = (props) => {
         getData={(data) => getDataFromScreens(data)}
       />
     );
-  } 
+  }
+  
   // else if (props.menu === 4) {
   //   container = (
   //     <SubType

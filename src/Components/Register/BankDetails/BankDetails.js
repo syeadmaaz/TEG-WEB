@@ -11,6 +11,7 @@ import {
   Button,
   CircularProgress
 } from "@mui/material";
+import classes from "./BankDetails.module.css";
 
 import axios from "../../../axios_tteg"
 
@@ -176,10 +177,8 @@ export default function BankDetails(props) {
                 </p>
               </Grid>
               <p style={{padding: '0 7.5%',color: 'red',fontSize: 'small'}}>Fields marked with * are compulsary</p>
-              <Grid
-                style={{ textAlign: "center", display: "flex", width: "100%" }}
-              >
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+              <Grid className={classes.InputStyle}>
+                <Grid className={classes.InputBox}>
                   <Grid>
                     <FormControl
                       variant="filled"
@@ -226,7 +225,7 @@ export default function BankDetails(props) {
                     />
                   </Grid>
                 </Grid>
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+                <Grid  className={classes.InputBox}>
                   <Grid>
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
