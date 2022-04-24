@@ -8,6 +8,130 @@
     width: 100%;
     padding: 1% 2% 1% 2%;
   }
+  .CheckBox {
+    margin-left: 70%;
+  }
+  .ItemStyle {
+    margin-top: -12%;
+    display: block;
+  }
+  /* .style1 {
+    display: none;
+  } */
+  .UploadStyle {
+    display: block;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+    margin-top: 10%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
+  }
+}
+
+@media only screen and (min-width: 460px) {
+  .style {
+    width: 100%;
+    display: block;
+  }
+  .alignItems {
+    width: 100%;
+    padding: 1% 2% 1% 2%;
+  }
+  .CheckBox {
+    margin-left: 5%;
+  }
+  .ItemStyle {
+    display: flex;
+    margin-top: 0%;
+  }
+  /* .style1 {
+    display: none;
+  } */
+  .UploadStyle {
+    display: flex;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -19,6 +143,58 @@
   .alignItems {
     width: 100%;
     padding: 1% 2% 1% 2%;
+  }
+  .ItemStyle {
+    display: flex;
+  }
+  /* .style1 {
+    display: none;
+  } */
+  .UploadStyle {
+    display: flex;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
   }
 }
 
@@ -33,6 +209,65 @@
     width: 50%;
     padding: 1% 2% 1% 2%;
   }
+  .CheckBox {
+    margin-left: 65%;
+  }
+  .HeadingStyle {
+    margin-right: 6%;
+  }
+  .ItemStyle {
+    margin-top: -12%;
+    display: block;
+  }
+  /* .style1 {
+    display: none;
+  } */
+  .UploadStyle {
+    display: block;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -46,6 +281,65 @@
     width: 50%;
     padding: 1% 2% 1% 2%;
   }
+  .CheckBox {
+    margin-left: 0%;
+  }
+  .HeadingStyle {
+    margin-right: 20%;
+  }
+  .ItemStyle {
+    margin-top: 0%;
+    display: flex;
+  }
+  /* .style1 {
+    display: none;
+  } */
+  .UploadStyle {
+    display: flex;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -58,7 +352,63 @@
     width: 50%;
     padding: 1% 2% 1% 2%;
   }
-  .style1 {
+  .CheckBox {
+    margin-left: 0%;
+  }
+  .HeadingStyle {
+    margin-right: 20%;
+  }
+  .ItemStyle {
+    margin-top: 0%;
+    display: flex;
+  }
+  /* .style1 {
     display: none;
+  } */
+  .UploadStyle {
+    display: flex;
+  }
+  .UploaderStyle {
+    width: 80%;
+  }
+  .PaperStyle {
+    height: 620;
+    margin: 10;
+    overflow: auto;
+  }
+
+  .TitleStyle {
+    text-align: center;
+    padding: 20px 10px;
+    justify-content: center;
+    margin: 0px auto;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .TitleLineStyle {
+    width: 50%;
+  }
+  .FileUploadText {
+    text-align: left;
+    width: 60%;
+  }
+  .UploadBtnPlacement {
+    padding: 2% 20% 1% 0%;
+    width: 40%;
+  }
+  .UploadBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+
+  .SubmitBtn {
+    border-radius: 18px;
+    /* justify-content: right; */
+    margin-left: 0%;
+  }
+  .SubmitBtnPlacement {
+    text-align: center;
+    padding: 2% 5% 2% 0%;
   }
 }

@@ -257,21 +257,12 @@ export default function App(props) {
       <Box>
         <Paper
           elevation={24}
-          style={{ height: 620, margin: 10, overflow: "auto" }}
+          className={classes.PaperStyle}
         >
           <Grid>
-            <p
-              style={{
-                textAlign: "center",
-                padding: "20px 10px",
-                justifyContent: "center",
-                margin: "0px auto",
-                fontWeight:'bold',
-                fontSize:24
-              }}
-            >
+            <p className={classes.TitleStyle} >
               Upload Documents
-              <hr style={{ width: "50%" }} />
+              <hr className={classes.TitleLineStyle} />
             </p>
           </Grid>
 
@@ -279,34 +270,33 @@ export default function App(props) {
 
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Address Proof - Govt. Doc</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange1}
                       name="file1"
                       types={fileTypes}
+                      className={classes.UploadBoxStyle}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file1.isUploaded} />
+                  <Checkbox checked={docDetail.file1.isUploaded} 
+                  className={classes.CheckBox}
+                  />
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file1.value
                       ? `File name: ${docDetail.file1.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -322,12 +312,12 @@ export default function App(props) {
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Identity Proof of Establishment</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange2}
@@ -335,21 +325,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file2.isUploaded} />
+                  <Checkbox checked={docDetail.file2.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file2.value
                       ? `File name: ${(docDetail.file2.value.name)}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -368,12 +354,12 @@ export default function App(props) {
 
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Shop Act Gumasta</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid  className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange3}
@@ -381,21 +367,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file3.isUploaded} />
+                  <Checkbox checked={docDetail.file3.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file3.value
                       ? `File name: ${docDetail.file3.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -410,13 +392,14 @@ export default function App(props) {
                 </Grid>
               </Grid>
             </Grid>
+
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>GST Certificate</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange4}
@@ -424,21 +407,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file4.isUploaded} />
+                  <Checkbox checked={docDetail.file4.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file4.value
                       ? `File name: ${docDetail.file4.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -456,12 +435,12 @@ export default function App(props) {
           </Grid>
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>PAN Card</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange5}
@@ -469,21 +448,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file5.isUploaded} />
+                  <Checkbox checked={docDetail.file5.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file5.value
                       ? `File name: ${docDetail.file5.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -499,12 +474,12 @@ export default function App(props) {
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Aadhar Card</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange6}
@@ -512,21 +487,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file6.isUploaded} />
+                  <Checkbox checked={docDetail.file6.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file6.value
                       ? `File name: ${docDetail.file6.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -544,12 +515,12 @@ export default function App(props) {
           </Grid>
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>ESIC</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange7}
@@ -557,21 +528,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file7.isUploaded} />
+                  <Checkbox checked={docDetail.file7.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file7.value
                       ? `File name: ${docDetail.file7.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -587,12 +554,12 @@ export default function App(props) {
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>PF</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange8}
@@ -600,21 +567,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file8.isUploaded} />
+                  <Checkbox checked={docDetail.file8.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file8.value
                       ? `File name: ${docDetail.file8.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -632,12 +595,12 @@ export default function App(props) {
           </Grid>
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Labour License</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange9}
@@ -645,21 +608,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file9.isUploaded} />
+                  <Checkbox checked={docDetail.file9.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file9.value
                       ? `File name: ${docDetail.file9.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -675,12 +634,12 @@ export default function App(props) {
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>MSME Udyog Aadhar</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange10}
@@ -688,21 +647,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file10.isUploaded} />
+                  <Checkbox checked={docDetail.file10.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file10.value
                       ? `File name: ${docDetail.file10.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -720,12 +675,12 @@ export default function App(props) {
           </Grid>
           <Grid className={classes.style}>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>A Class Certificate for Electrical Work</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange11}
@@ -733,21 +688,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file11.isUploaded} />
+                  <Checkbox checked={docDetail.file11.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file11.value
                       ? `File name: ${docDetail.file11.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -763,12 +714,12 @@ export default function App(props) {
               </Grid>
             </Grid>
             <Grid className={classes.alignItems}>
-              <Grid>
+              <Grid className={classes.HeadingStyle}>
                 <h3>Work Experience Certificate</h3>
               </Grid>
               <Grid>
-                <Grid style={{ display: "flex" }}>
-                  <Grid style={{ width: "80%" }}>
+                <Grid className={classes.UploadStyle}>
+                  <Grid className={classes.UploaderStyle}>
                     <FileUploader
                       multiple={false}
                       handleChange={handleChange12}
@@ -776,21 +727,17 @@ export default function App(props) {
                       types={fileTypes}
                     />
                   </Grid>
-                  <Checkbox checked={docDetail.file12.isUploaded} />
+                  <Checkbox checked={docDetail.file12.isUploaded} className={classes.CheckBox}/>
                 </Grid>
-                <Grid style={{ display: "flex" }}>
-                  <p style={{ textAlign: "left", width: "60%" }}>
+                <Grid className={classes.ItemStyle}>
+                  <p className={classes.FileUploadText}>
                     {docDetail.file12.value
                       ? `File name: ${docDetail.file12.value.name}`
                       : "No files uploaded"}
                   </p>
-                  <Grid style={{ padding: "1% 20% 1% 0%", width: "40%" }}>
+                  <Grid className={classes.UploadBtnPlacement}>
                     <Button
-                      style={{
-                        borderRadius: "18px",
-                        // justifyContent: "right",
-                        marginLeft: "0%",
-                      }}
+                      className={classes.UploadBtn}
                       type="submit"
                       color="primary"
                       variant="contained"
@@ -807,10 +754,10 @@ export default function App(props) {
             </Grid>
           </Grid>
 
-          <Grid style={{ textAlign: "center", padding: "2% 5% 2% 0%" }}>
+          <Grid className={classes.SubmitBtnPlacement} >
             {/* <SvgButton>Continue</SvgButton> */}
             <Button
-              style={{ borderRadius: "18px", justifyContent: "center" }}
+              className={classes.SubmitBtn}
               type="submit"
               color="primary"
               variant="contained"
