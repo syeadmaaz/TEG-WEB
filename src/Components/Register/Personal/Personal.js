@@ -172,7 +172,7 @@ export default function Personal(props) {
               </h1>
             </Grid> */}
 
-            <Grid className={classes.style}>
+            <Grid >
               <Grid>
                 <p
                   style={{
@@ -188,9 +188,9 @@ export default function Personal(props) {
               </Grid>
               <p style={{padding: '0 7.5%',color: 'red',fontSize: 'small'}}>Fields marked with * are compulsary</p>
               <Grid
-                style={{ textAlign: "center", display: "flex", width: "100%" }}
+                className={classes.InputStyle}
               >
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+                <Grid className={classes.InputBox}>
                   <Grid>
                     <TextField
                       style={{ padding: "1% 1% 1% 1%", width: "70%" }}
@@ -237,7 +237,7 @@ export default function Personal(props) {
                   </Grid>
                 </Grid>
 
-                <Grid style={{ width: "50%", textAlign: "center" }}>
+                <Grid className={classes.InputBox}>
                   <Grid>
                     <FormControl
                       variant="filled"

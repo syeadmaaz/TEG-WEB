@@ -9,6 +9,7 @@
   }
   .InputBox {
     width: 100%;
+    text-align: "center";
   }
 }
 
@@ -23,6 +24,7 @@
   }
   .InputBox {
     width: 100%;
+    text-align: "center";
   }
 }
 
@@ -37,6 +39,7 @@
   }
   .InputBox {
     width: 100%;
+    text-align: "center";
   }
 }
 
@@ -51,6 +54,7 @@
   }
   .InputBox {
     width: 50%;
+    text-align: "center";
   }
 }
 
@@ -65,5 +69,6 @@
   }
   .InputBox {
     width: 50%;
+    text-align: "center";
   }
 }

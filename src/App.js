@@ -21,6 +21,7 @@ import DashboardContainer from "./Components/Dashboard/Components/DashboardConta
 import HumanResourceOnboard from "./Components/Dashboard/Components/HumanResourceOnboard/HumanResourceOnboard";
 import CaseContainer from "./Components/Maps/CaseContainer";
 import PreRegCompleted from "./Components/PreRegistration/PreRegCompleted";
+import Registration_Accordian from "./Components/Register/Registration_Accordian";
 
 const cookies = new Cookies();
 
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      {Landing}
+      {/* {Landing} */}
       {/* <CaseContainer/> */}
       {/* <LoginContainer/> */}
       {/* <LoginPage/>   */}
@@ -74,6 +75,7 @@ function App() {
       {/* <PreRegistration/> */}
       {/* <LegalInfoFree/> */}
       {/* <Registration/> */}
+      <Registration_Accordian />
       {/* <Main/> */}
       {/* <HumanResourceOnboard/> */}
     </div>

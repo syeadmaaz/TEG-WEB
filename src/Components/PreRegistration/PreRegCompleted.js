@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 
 import Register from "../Register/Registration"; 
+import Registration_Accordian from "../Register/Registration_Accordian";
 import OTPPage from "./OTPPage";
 import Logo from "../../assets/images/logo.png";
 
@@ -31,7 +32,7 @@ const PreRegCompleted = (props)=>{
     console.log(screen);
     let container = null;
     if(moveToRegistration){
-        container = (<Register  resourceID = {props.resourceID} resourceTypeID= {props.resourceTypeID}/>)
+        container = (<Registration_Accordian  resourceID = {props.resourceID} resourceTypeID= {props.resourceTypeID}/>)
     }
     else if(screen === 1){
         container = (<OTPPage resourceID = {props.resourceID} resourceTypeID= {props.resourceTypeID} getData = {(screen)=>setScreen(screen)} />)
