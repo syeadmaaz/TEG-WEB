@@ -27,12 +27,12 @@ import { parseWithOptions } from "date-fns/fp";
 const cookies = new Cookies();
 
 
-export default function MachineOnboard(props) {
+export default function ParticularMachineOnboard(props) {
   const fileTypes = ["PDF"];
 
   const [goToOnboarding, setGoToOnboarding] = useState(false);
 
-  const [ownerFound, setOwnerFound] = React.useState(null);
+  const [ownerFound, setOwnerFound] = React.useState(props.particularMachineDetails.machineDetails.resourceOwner === 'true' ? 1:2);
 
   const [value, setValue] = React.useState(new Date());
 
@@ -41,30 +41,32 @@ export default function MachineOnboard(props) {
 
   const [miData, setMIData] = useState({
     mType: {
-      value: 0,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.machineTypeID.toString(),
+      valid: true,
     },
     oem: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.OEM,
+      valid: true,
     },
     machineCapacity: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.machineCapacityInTonnes,
+      valid: true,
     },
     modelNumber: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.modelNumber,
+      valid: true,
     },
     machineAvailableSectors: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.machineAvailabilitySectors,
+      valid: true,
     },
   });
 
   const [machineType, setMachineType] = useState([]);
 
   useEffect(() => {
+    console.log(props);
+    
     setLoading(true);
     axios
       .get("/getMachineType", {})
@@ -96,36 +98,36 @@ export default function MachineOnboard(props) {
 
   const [oiData, setOIData] = useState({
     idName: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.name,
+      valid: true,
     },
     idEmail: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.email,
+      valid: true,
     },
     bankName: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.bankName,
+      valid: true,
     },
     ifscCode: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.ifscCode,
+      valid: true,
     },
     idAddress: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.Address,
+      valid: true,
     },
     mobNum: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.mobile,
+      valid: true,
     },
     accNum: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.accountNumber,
+      valid: true,
     },
     branchAddress: {
-      value: null,
-      valid: false,
+      value: props.particularMachineDetails.machineDetails.branchAddress,
+      valid: true,
     },
   });
   const handleChange2 = (key, value) => {
@@ -145,13 +147,13 @@ export default function MachineOnboard(props) {
       docTypeID: "DT-00013",
       value: null,
       isUploaded: false,
-      path: null,
+      path: props.particularMachineDetails.machineDetails.machineInvoicePath,
     },
     file2: {
       docTypeID: "DT-00014",
       value: null,
       isUploaded: false,
-      path: null,
+      path: props.particularMachineDetails.machineDetails.machineOperationalManualPath,
     },
   });
 
@@ -264,7 +266,7 @@ export default function MachineOnboard(props) {
   };
 
   let container2 = null;
-  if (ownerFound === "2") {
+  if (ownerFound =="2") {
     console.log(ownerFound);
     container2 = (
       <div>
@@ -576,7 +578,8 @@ export default function MachineOnboard(props) {
               <RadioGroup
                 row
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
+                defaultValue={ownerFound}
+                value = {ownerFound}
                 name="radio-buttons-group"
                 onChange={(event) => setOwnerFound(event.target.value)}
               >
@@ -588,7 +591,7 @@ export default function MachineOnboard(props) {
           {container2}
           <Grid style={{ textAlign: "center", padding: "1% 0% 1% 0%" }}>
             <Button variant="contained" onClick={submitHandler}>
-              Continue
+              Update
             </Button>
           </Grid>
         </Paper>
